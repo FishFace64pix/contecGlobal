@@ -1045,8 +1045,8 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  -webkit-mask: url('img/products/classic/yandan.png') no-repeat center / contain;
-  mask: url('img/products/classic/yandan.png') no-repeat center / contain;
+  -webkit-mask: url('img/products/classic/yandan.webp') no-repeat center / contain;
+  mask: url('img/products/classic/yandan.webp') no-repeat center / contain;
   mix-blend-mode: color;
   opacity: 0.85;
 }
