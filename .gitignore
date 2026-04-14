@@ -1,0 +1,23 @@
+.vercel
+*.log
+node_modules/
+.DS_Store
+
+# Large Assets
+video/
+bilgiler ve gorseller/
+yeni bilgiler/
+img/products/**/*.png
+img/*.png
+!img/logo.png
+!apple-touch-icon.png
+
+# Temporary Scripts
+add-cookies.js
+apply-changes.js
+fix-cookies.js
+fix-email.js
+fix-form.js
+migrate.js
+remove-maintenance.js
+gunvel

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContecPark | Bidoane 19L Policarbonat, Capace și Rafturi | București</title>
+    <meta name="description"
+        content="ContecPark produce bidoane din policarbonat de 19 litri, capace bidon și rafturi bidoane. Producător B2B cu sediul în București, România.">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#0071E3">
+    <meta name="robots" content="index, follow">
+    <link rel="alternate" hreflang="ro" href="https://contecpark.com/">
+    <link rel="alternate" hreflang="en" href="https://contecpark.com/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://contecpark.com/">
+    <meta property="og:title" content="ContecPark | Producător Bidoane 19L">
+    <meta property="og:description" content="Producător român de bidoane 19L policarbonat, capace și rafturi.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="og-image.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=11">
+    <script type="application/ld+json" id="schema-org">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ContecPark",
+        "url": "#",
+        "logo": "#",
+        "description": "Romanian manufacturer of 19L polycarbonate water bottles, caps and bottle racks.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Str. Fabricii nr. 42",
+            "addressLocality": "București",
+            "addressCountry": "RO"
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <!-- INTRO ANIMATION OVERLAY -->
+    <div class="bg-caustic-layer"><div class="caustic"></div></div>
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-ripple" id="cursor-ripple"></div>
+
+    <div id="product-modal" class="product-modal">
+        <div class="modal-close" id="modal-close">✕</div>
+        <div id="modal-body"></div>
+    </div>
+
+    <div id="intro-overlay">
+        <div id="intro-content">
+            <div id="intro-bottles">
+                <div class="intro-bottle-wrap bottle-blue-wrap">
+                    <img src="img/products/classic/yandan.webp" class="intro-bottle" alt="Blue Bottle">
+                </div>
+                <div class="intro-bottle-wrap bottle-yellow-wrap">
+                    <img src="img/products/classic/yandan.webp" class="intro-bottle" alt="Yellow Bottle">
+                </div>
+                <div class="intro-bottle-wrap bottle-red-wrap">
+                    <img src="img/products/classic/yandan.webp" class="intro-bottle" alt="Red Bottle">
+                </div>
+            </div>
+            <div id="intro-text">
+                <span class="intro-letter">C</span><span class="intro-letter">O</span><span
+                    class="intro-letter">N</span><span class="intro-letter">T</span><span
+                    class="intro-letter">E</span><span class="intro-letter">C</span><span
+                    class="intro-letter">P</span><span class="intro-letter">A</span><span
+                    class="intro-letter">R</span><span class="intro-letter">K</span>
+            </div>
+            <div id="intro-subtitle">MADE IN ROMANIA 🇷🇴</div>
+        </div>
+        <button id="skip-intro" class="cta-btn outline" onclick="skipIntro()">Skip ▸</button>
+    </div>
+
+    <!-- HEADER -->
+    <header id="site-header">
+        <div class="header-inner">
+            <div id="header-left">
+                <button id="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <a href="/" id="header-logo" style="position: relative;">
+                    <img src="img/logo.png" alt="ContecPark Logo" class="header-logo-img">
+                    <div class="bubble-container">
+                        <span class="bubble bubble-1"></span>
+                        <span class="bubble bubble-2"></span>
+                        <span class="bubble bubble-3"></span>
+                        <span class="bubble bubble-4"></span>
+                    </div>
+                </a>
+                <nav id="main-nav">
+                    <a href="/" class="nav-link active" data-i18n="nav_home">Acasă</a>
+                    <a href="/products" class="nav-link" data-i18n="nav_products">Produse</a>
+                    <a href="/about" class="nav-link" data-i18n="nav_about">Despre Noi</a>
+                </nav>
+            </div>
+
+            <!-- Header'a yerleşen minik bayrak damacanalar -->
+            <div id="header-flag-bottles">
+                <div class="hf-wrap hf-blue">
+                    <img src="img/products/classic/yandan.webp" class="hf-bottle" alt="RO Blue">
+                </div>
+                <div class="hf-wrap hf-yellow">
+                    <img src="img/products/classic/yandan.webp" class="hf-bottle" alt="RO Yellow">
+                </div>
+                <div class="hf-wrap hf-red">
+                    <img src="img/products/classic/yandan.webp" class="hf-bottle" alt="RO Red">
+                </div>
+            </div>
+            <div id="header-right">
+                <div id="lang-toggle">
+                    <button class="lang-btn active" data-lang="ro" onclick="setLang('ro')">RO</button>
+                    <span class="lang-sep">/</span>
+                    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+                </div>
+                <a href="/about" class="cta-btn header-cta" data-i18n="nav_contact"
+                    onclick="scrollToContact()">Contact</a>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu">
+            <a href="/" class="mobile-link" data-i18n="nav_home" onclick="closeMobileMenu()">Acasă</a>
+            <a href="/products" class="mobile-link" data-i18n="nav_products" onclick="closeMobileMenu()">Produse</a>
+            <a href="/about" class="mobile-link" data-i18n="nav_about" onclick="closeMobileMenu()">Despre Noi</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main id="app"></main>
+
+    <!-- FOOTER -->
+    <footer id="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-col" data-animate>
+                <div class="footer-logo-text">CONTECPARK</div>
+                <p class="footer-desc" data-i18n="footer_desc">Producător român de bidoane, capace și rafturi pentru apă
+                    de 19 litri.</p>
+            </div>
+            <div class="footer-col" data-animate style="transition-delay: 0.1s">
+                <h4 data-i18n="footer_nav">Navigare</h4>
+                <a href="/" data-i18n="nav_home">Acasă</a>
+                <a href="/products" data-i18n="nav_products">Produse</a>
+                <a href="/about" data-i18n="nav_about">Despre Noi</a>
+            </div>
+            <div class="footer-col" data-animate style="transition-delay: 0.2s">
+                <h4 data-i18n="footer_products">Produse</h4>
+                <a href="/products/bidon-19l-clasic" data-i18n="prod_clasic_name">Bidon 19L Policarbonat</a>
+                <a href="/products/bidon-19l-maner" data-i18n="prod_maner_name">Bidon 19L Tritan BPA-Free</a>
+                <a href="/products/capac-bidon" data-i18n="prod_cap">Capac Bidon</a>
+            </div>
+            <div class="footer-col" data-animate style="transition-delay: 0.3s">
+                <h4 data-i18n="footer_contact">Contact</h4>
+                <p>Str. Fabricii nr. 42</p>
+                <p>București, Sector 4, România</p>
+                <p>+40 750 456 525</p>
+                <p>info@contecpark.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ContecPark. <span data-i18n="footer_rights">Toate drepturile rezervate.</span> | Made in România 🇷🇴</p>
+        </div>
+    </footer>
+
+    <!-- FLOATING CALL BUTTON -->
+    <a href="tel:+40750456525" class="floating-call" aria-label="Sună acum">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+            </path>
+        </svg>
+    </a>
+
+    <!-- COOKIE CONSENT -->
+    <div id="cookie-consent" class="cookie-banner" style="display:none;">
+        <div class="cookie-content">
+            <span data-i18n="cookie_text">Acest site folosește cookie-uri și stocare locală pentru a îmbunătăți
+                experiența utilizatorului.</span>
+            <a href="/about" data-i18n="cookie_link"
+                style="color: var(--aqua); text-decoration: underline; margin-left: 10px;">Află mai multe</a>
+        </div>
+        <button id="accept-cookies" class="cta-btn" data-i18n="cookie_accept">Am Înțeles</button>
+    </div>
+
+    <script src="app.js?v=11" defer></script>
+    <script src="animations.js?v=11" defer></script>
+</body>
+
+</html>
