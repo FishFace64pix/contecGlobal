@@ -63,9 +63,6 @@
         const totalFrames = images.length;
         if (totalFrames === 0) return;
 
-        // Show first image immediately
-        images.forEach((img, i) => { img.style.opacity = i === 0 ? '1' : '0'; });
-
         const pinSection = seqContainer.closest('.hero-pin-section');
         if (!pinSection) return;
 
@@ -73,7 +70,6 @@
         const textTitle = textBox ? textBox.querySelector('h3') : null;
         const textSub   = textBox ? textBox.querySelector('p')  : null;
 
-        // feature cards indexed pf1..pf6
         const featCards = [
             document.getElementById('pf1'), document.getElementById('pf2'),
             document.getElementById('pf3'), document.getElementById('pf4'),
@@ -81,7 +77,6 @@
         ];
 
         function getBenefit(n) {
-            // n is 1-based
             const lang = window.currentLang || 'ro';
             const dict = window.T ? (window.T[lang] || window.T['ro'] || {}) : {};
             return {
@@ -91,40 +86,40 @@
         }
 
         let lastN = -1;
+        let ticking = false;
 
         function tick() {
-            // Distance from top of page to top of section
             const sectionTop    = pinSection.offsetTop;
-            const sectionHeight = pinSection.offsetHeight;          // ≈ 250vh
+            const sectionHeight = pinSection.offsetHeight;
             const scrolled      = window.scrollY;
             const maxScroll     = sectionHeight - window.innerHeight;
             const raw           = scrolled - sectionTop;
             const progress      = Math.min(Math.max(raw / maxScroll, 0), 1);
 
-            // Scroll progress bar
             const fillBar = document.getElementById('pin-scroll-fill');
             if (fillBar) fillBar.style.width = (progress * 100) + '%';
 
-            // Image crossfade
-            const frameExact    = progress * (totalFrames - 1);        // 0 … 5
-            const frameIndex    = Math.floor(frameExact);               // 0 … 4
-            const frameProgress = frameExact - frameIndex;             // 0 … 1
+            const frameExact    = progress * (totalFrames - 1);
+            const frameIndex    = Math.floor(frameExact);
+            const frameProgress = frameExact - frameIndex;
 
+            // PERFORMANCE: Only update opacity for what's changed
             images.forEach((img, i) => {
-                if (i === frameIndex)     img.style.opacity = String(1 - frameProgress * 0.55);
-                else if (i === frameIndex + 1) img.style.opacity = String(frameProgress);
-                else img.style.opacity = '0';
+                if (i === frameIndex) {
+                    img.style.opacity = String(1 - frameProgress);
+                    img.style.zIndex = '2';
+                } else if (i === frameIndex + 1) {
+                    img.style.opacity = String(frameProgress);
+                    img.style.zIndex = '3';
+                } else {
+                    img.style.opacity = '0';
+                    img.style.zIndex = '1';
+                }
             });
 
-            // Subtle scale
-            seqContainer.style.transform = `scale(${Math.max(0.85, 1 - progress * 0.15)})`;
-
-            // Benefit text  (1-based, maps 6 frames -> 6 texts)
             const n = Math.min(frameIndex + 1, 6);
             if (n !== lastN) {
                 lastN = n;
-
-                // Highlight active feature card with blur-in
                 featCards.forEach((c, ci) => {
                     if (!c) return;
                     if (ci === n - 1) c.classList.add('active');
@@ -143,27 +138,41 @@
                     }, 160);
                 }
             }
+            ticking = false;
         }
 
-        _seqScrollHandler = tick;
-        window.addEventListener('scroll', tick, { passive: true });
-        tick(); // initial render
+        _seqScrollHandler = () => {
+            if (!ticking) {
+                requestAnimationFrame(tick);
+                ticking = true;
+            }
+        };
+        window.addEventListener('scroll', _seqScrollHandler, { passive: true });
+        tick();
     }
 
     // ── 2. Aurora & Water Parallax ─────────────────────────────
     function initAuroraParallax() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (window.innerWidth < 1024) return; // Disable on mobile to save CPU
         
         if (_scrollHandler) window.removeEventListener('scroll', _scrollHandler);
         
         const blobs = document.querySelectorAll('.aurora-blob');
         if (!blobs.length) return;
 
+        let ticking = false;
         _scrollHandler = function() {
-            const y = window.scrollY;
-            blobs.forEach((b, i) => {
-                b.style.transform = `translateY(${y * (0.1 + i * 0.05)}px)`;
-            });
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const y = window.scrollY;
+                    blobs.forEach((b, i) => {
+                        b.style.transform = `translate3d(0, ${y * (0.1 + i * 0.05)}px, 0)`;
+                    });
+                    ticking = false;
+                });
+                ticking = true;
+            }
         };
         window.addEventListener('scroll', _scrollHandler, { passive: true });
     }
@@ -171,6 +180,7 @@
     // ── 3. 3D Spatial Tilt Interactions (Apple TV style) ───────
     function init3DTilt() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (window.innerWidth < 1024) return; // Mouse only feature
         
         const cards = document.querySelectorAll('.product-card, .highlight-card');
         
@@ -183,26 +193,23 @@
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
                 
-                const rotateX = -(y / rect.height) * 15;
-                const rotateY = (x / rect.width) * 15;
+                const rotateX = -(y / rect.height) * 12;
+                const rotateY = (x / rect.width) * 12;
                 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
                 card.style.transition = 'none'; 
-            });
+            }, { passive: true });
             
             card.addEventListener('mouseleave', () => {
                 card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
-                card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-            });
-            
-            card.addEventListener('mouseenter', () => {
-                card.style.transition = 'transform 0.1s linear';
+                card.style.transition = 'transform 0.4s ease';
             });
         });
     }
 
     // ── 4. Magnetic UI Elements ─────────────────────────────────
     function initMagneticElements() {
+        if (window.innerWidth < 1024) return; // Mouse only
         const magnets = document.querySelectorAll('.nav-link, .cta-btn');
         
         magnets.forEach(btn => {
@@ -211,11 +218,11 @@
 
             btn.addEventListener('mousemove', e => {
                 const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
+                const x = (e.clientX - rect.left - rect.width / 2) * 0.2;
+                const y = (e.clientY - rect.top - rect.height / 2) * 0.2;
                 
-                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-            });
+                btn.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+            }, { passive: true });
             
             btn.addEventListener('mouseleave', () => {
                 btn.style.transform = '';
