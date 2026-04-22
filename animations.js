@@ -29,13 +29,21 @@
 
     function initAll() {
         initScrollAnimations();
+        
+        // We want the 3D image sequence to run on mobile too, unless user prefers reduced motion
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            initImageSequence();
+        }
+
         if (!isPerfLite()) {
             initAuroraParallax();
             init3DTilt();
             initMagneticElements();
-            initImageSequence();
         }
     }
+
+    // Expose globally so app.js can call it when dynamically loading content or modals
+    window.observeElements = initScrollAnimations;
 
     // ── 1. Scroll-Driven Cinematic Animation ────────────────────
     function initScrollAnimations() {

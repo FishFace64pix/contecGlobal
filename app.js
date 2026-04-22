@@ -1282,7 +1282,7 @@ function route() {
   // Post-render hooks
   requestAnimationFrame(() => {
     if (hash === '/') initParticles(document.getElementById('hero-canvas'));
-    observeElements();
+    if (window.observeElements) window.observeElements();
     initFAQs();
     initFormValidation();
     if (hash.startsWith('/products/')) init360Viewer();
@@ -1655,7 +1655,7 @@ function initProductModal() {
     `;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    setTimeout(observeElements, 100);
+    setTimeout(() => { if(window.observeElements) window.observeElements(); }, 100);
   };
 
   window.switchBottleVersionModal = function(id, version) {
