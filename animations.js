@@ -29,7 +29,14 @@
 
     function initAll() {
         initScrollAnimations();
-        
+
+        // Clean up stale resize/orientation handlers from previous sequence init
+        const prevSeq = document.getElementById('hero-bottle-sequence');
+        if (prevSeq && prevSeq._seqResizeCleanup) {
+            prevSeq._seqResizeCleanup();
+            prevSeq._seqResizeCleanup = null;
+        }
+
         // We want the 3D image sequence to run on mobile too, unless user prefers reduced motion
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             initImageSequence();
@@ -83,6 +90,7 @@
         const textBox   = document.querySelector('.bottle-3d-text');
         const textTitle = textBox ? textBox.querySelector('h3') : null;
         const textSub   = textBox ? textBox.querySelector('p')  : null;
+        const fillBar   = document.getElementById('pin-scroll-fill');
 
         const featCards = [
             document.getElementById('pf1'), document.getElementById('pf2'),
@@ -99,43 +107,57 @@
             };
         }
 
-        let lastN = -1;
-        let lastFrameIndex = 0;
-        let ticking = false;
+        // ── Cache layout geometry (the key perf fix: no offsetTop inside scroll) ──
+        let sectionTop    = 0;
+        let sectionHeight = 0;
+        function cacheLayout() {
+            sectionTop    = pinSection.offsetTop;
+            sectionHeight = pinSection.offsetHeight;
+        }
+        cacheLayout();
+        const _resizeHandler = () => cacheLayout();
+        window.addEventListener('resize', _resizeHandler, { passive: true });
+        window.addEventListener('orientationchange', _resizeHandler, { passive: true });
+
+        const isMobile    = window.innerWidth <= 900;
+        let lastN         = -1;
+        let lastFrameIndex = -1;
+        let ticking       = false;
+        let frameSkip     = 0;          // for mobile frame-rate throttle
+        let textTimer     = null;       // prevent stacking text timeouts
 
         function tick() {
-            const sectionTop    = pinSection.offsetTop;
-            const sectionHeight = pinSection.offsetHeight;
-            const scrolled      = window.scrollY;
-            const maxScroll     = sectionHeight - window.innerHeight;
-            const raw           = scrolled - sectionTop;
-            const progress      = Math.min(Math.max(raw / maxScroll, 0), 1);
+            const scrolled  = window.scrollY;
+            const maxScroll = sectionHeight - window.innerHeight;
+            const raw       = scrolled - sectionTop;
+            const progress  = Math.min(Math.max(raw / maxScroll, 0), 1);
 
-            const fillBar = document.getElementById('pin-scroll-fill');
             if (fillBar) fillBar.style.width = (progress * 100) + '%';
 
             const frameExact    = progress * (totalFrames - 1);
             const frameIndex    = Math.floor(frameExact);
             const frameProgress = frameExact - frameIndex;
 
+            // Hide frames that are no longer adjacent — opacity only, no visibility toggle
             if (frameIndex !== lastFrameIndex) {
-                const prev = images[lastFrameIndex];
-                const prevNext = images[lastFrameIndex + 1];
-                if (prev) { prev.style.opacity = '0'; prev.style.zIndex = '1'; prev.style.visibility = 'hidden'; }
-                if (prevNext) { prevNext.style.opacity = '0'; prevNext.style.zIndex = '1'; prevNext.style.visibility = 'hidden'; }
+                images.forEach((img, i) => {
+                    if (i !== frameIndex && i !== frameIndex + 1) {
+                        img.style.opacity = '0';
+                        img.style.zIndex  = '1';
+                    }
+                });
                 lastFrameIndex = frameIndex;
             }
+
             const current = images[frameIndex];
-            const next = images[frameIndex + 1];
+            const next    = images[frameIndex + 1];
             if (current) {
-                current.style.visibility = 'visible';
                 current.style.opacity = String(1 - frameProgress);
-                current.style.zIndex = '2';
+                current.style.zIndex  = '2';
             }
             if (next) {
-                next.style.visibility = 'visible';
                 next.style.opacity = String(frameProgress);
-                next.style.zIndex = '3';
+                next.style.zIndex  = '3';
             }
 
             const n = Math.min(frameIndex + 1, 6);
@@ -148,9 +170,10 @@
                 });
 
                 if (textBox && textTitle && textSub) {
+                    clearTimeout(textTimer); // don't stack timeouts on fast scroll
                     textBox.classList.remove('text-visible');
                     textBox.classList.add('text-fade');
-                    setTimeout(() => {
+                    textTimer = setTimeout(() => {
                         const b = getBenefit(n);
                         textTitle.innerHTML = b.title || '';
                         textSub.innerHTML   = b.desc  || '';
@@ -163,12 +186,24 @@
         }
 
         _seqScrollHandler = () => {
-            if (!ticking) {
-                requestAnimationFrame(tick);
-                ticking = true;
+            if (ticking) return;
+            // On mobile, skip every other scroll event to halve CPU load
+            if (isMobile) {
+                frameSkip++;
+                if (frameSkip % 2 !== 0) return;
             }
+            requestAnimationFrame(tick);
+            ticking = true;
         };
         window.addEventListener('scroll', _seqScrollHandler, { passive: true });
+
+        // Expose resize cleanup on the element so initAll re-runs don't orphan handlers
+        seqContainer._seqResizeCleanup = () => {
+            window.removeEventListener('resize', _resizeHandler);
+            window.removeEventListener('orientationchange', _resizeHandler);
+            clearTimeout(textTimer);
+        };
+
         tick();
     }
 

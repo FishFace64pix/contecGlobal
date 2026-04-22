@@ -2315,7 +2315,13 @@ body:hover .custom-cursor-ripple { opacity: 1; }
     min-height: 300px;
     z-index: 5;
     margin: 0 auto;
-    filter: drop-shadow(0 40px 60px rgba(0, 113, 227, 0.3)); /* Cinematic depth */
+    filter: drop-shadow(0 40px 60px rgba(0, 113, 227, 0.3)); /* Cinematic depth — desktop only */
+}
+/* Drop-shadow is GPU-expensive on mobile — disable it */
+@media (max-width: 900px) {
+    .scroll-sequence {
+        filter: none;
+    }
 }
 
 /* Add a sleek oval "Apple-like" podium shadow beneath the bottle */
@@ -2339,14 +2345,14 @@ body:hover .custom-cursor-ripple { opacity: 1; }
     width: 100%; height: 100%;
     object-fit: contain;
     opacity: 0;
-    visibility: hidden;
+    /* Visibility removed — only opacity is changed in JS (GPU-composited, no layout recalc) */
     will-change: opacity;
     transform: translateZ(0); /* GPU acceleration */
     pointer-events: none;
+    contain: strict; /* isolate paint/layout from rest of page */
 }
 .scroll-sequence .seq-img:first-child {
     opacity: 1; /* first image visible on load */
-    visibility: visible;
 }
 /* Override old float animation */
 .hero-main-bottle {
