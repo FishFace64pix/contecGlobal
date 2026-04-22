@@ -333,7 +333,6 @@ function updateSEO() {
       "@type": "PostalAddress",
       "streetAddress": "Strada Gloriei 3",
       "addressLocality": "Giurgiu",
-      "postalCode": "087082",
       "addressCountry": "RO"
     }
   };
@@ -1165,8 +1164,8 @@ function renderAbout() {
       <div class="about-grid" style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; margin-top: 80px;">
         <div class="address-block" data-animate>
             <h3>${t('about_address_title')}</h3>
-            <p style="margin-bottom:8px; line-height: 1.4;"><strong>Factory:</strong><br>Strada Gloriei 3, 087082 Giurgiu</p>
-            <p style="margin-bottom:15px; line-height: 1.4;"><strong>Office:</strong><br>Bulevardul Pipera 1/VI, 077190 Voluntari (Hyperion Towers)</p>
+            <p style="margin-bottom:8px; line-height: 1.4;"><strong>Factory:</strong><br>Strada Gloriei 3, Giurgiu</p>
+            <p style="margin-bottom:15px; line-height: 1.4;"><strong>Office:</strong><br>Bulevardul Pipera 1/VI, Voluntari (Hyperion Towers)</p>
             <p><a href="tel:+40750456525">+40 750 456 525</a></p>
             <p><a href="mailto:info@contecpark.com">info@contecpark.com</a></p>
             <div class="map-placeholder" style="margin-top: 30px;">
