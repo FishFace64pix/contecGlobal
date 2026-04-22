@@ -7,6 +7,10 @@
     let _scrollHandler = null;
     let _heroHandler = null;
     let _seqScrollHandler = null;
+    const isPerfLite = () =>
+        document.documentElement.classList.contains('perf-lite') ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+        window.innerWidth <= 900;
 
     document.addEventListener('DOMContentLoaded', () => {
         initAll();
@@ -25,10 +29,12 @@
 
     function initAll() {
         initScrollAnimations();
-        initAuroraParallax();
-        init3DTilt();
-        initMagneticElements();
-        initImageSequence();
+        if (!isPerfLite()) {
+            initAuroraParallax();
+            init3DTilt();
+            initMagneticElements();
+            initImageSequence();
+        }
     }
 
     // ── 1. Scroll-Driven Cinematic Animation ────────────────────
@@ -86,6 +92,7 @@
         }
 
         let lastN = -1;
+        let lastFrameIndex = 0;
         let ticking = false;
 
         function tick() {
@@ -103,19 +110,23 @@
             const frameIndex    = Math.floor(frameExact);
             const frameProgress = frameExact - frameIndex;
 
-            // PERFORMANCE: Only update opacity for what's changed
-            images.forEach((img, i) => {
-                if (i === frameIndex) {
-                    img.style.opacity = String(1 - frameProgress);
-                    img.style.zIndex = '2';
-                } else if (i === frameIndex + 1) {
-                    img.style.opacity = String(frameProgress);
-                    img.style.zIndex = '3';
-                } else {
-                    img.style.opacity = '0';
-                    img.style.zIndex = '1';
-                }
-            });
+            if (frameIndex !== lastFrameIndex) {
+                const prev = images[lastFrameIndex];
+                const prevNext = images[lastFrameIndex + 1];
+                if (prev) { prev.style.opacity = '0'; prev.style.zIndex = '1'; }
+                if (prevNext) { prevNext.style.opacity = '0'; prevNext.style.zIndex = '1'; }
+                lastFrameIndex = frameIndex;
+            }
+            const current = images[frameIndex];
+            const next = images[frameIndex + 1];
+            if (current) {
+                current.style.opacity = String(1 - frameProgress);
+                current.style.zIndex = '2';
+            }
+            if (next) {
+                next.style.opacity = String(frameProgress);
+                next.style.zIndex = '3';
+            }
 
             const n = Math.min(frameIndex + 1, 6);
             if (n !== lastN) {

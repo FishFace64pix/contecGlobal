@@ -14,6 +14,7 @@ const T = {
     prod_cap: 'Capac 55mm Multicolor', prod_cap_desc: 'Capace etanșe disponibile într-o gamă largă de culori. Siguranță maximă și compatibilitate universală pentru bidoane 19L.',
     details_link: 'Detalii Tehnice →',
     prod_tritan_name: 'Bidon 19L Tritan (BPA-Free)', prod_pc_name: 'Bidon 19L Policarbonat',
+    version_holder: 'Cu Mâner', version_straight: 'Clasic',
     drag_hint: 'Trageți pentru a roti 360°',
     tech_quality_title: 'Tehnic & Calitate',
     tech_mat: 'Material', tech_trace: 'Trasabilitate', tech_cert: 'Certificare',
@@ -98,8 +99,8 @@ const T = {
     t360_title_5: 'Fără Infiltrații', t360_desc_5: 'Nu reține mirosuri și nu alterează gustul apei.',
     t360_title_6: 'Eficiență Economică', t360_desc_6: 'Rezistența superioară scade semnificativ costul total de operare.',
     select_color: 'Selectați Culoarea',
-    prod_clasic_name: 'Bidon 19L Policarbonat Clasic',
-    prod_maner_name: 'Bidon 19L Tritan (BPA-Free) cu Mâner',
+    prod_clasic_name: 'Bidon 19L Policarbonat',
+    prod_maner_name: 'Bidon 19L Tritan (BPA-Free)',
     bottle_color: 'Transparent / Albastru (Disponibilitatea poate varia)',
     form_sending: '⏳ Se trimite...',
     form_gdpr_consent: 'Sunt de acord cu <a href="/about" style="color:var(--primary);text-decoration:underline">politica de confidențialitate</a>.',
@@ -126,6 +127,7 @@ const T = {
     prod_cap: '19L Bottle Cap with Seal', prod_cap_desc: 'Leak-proof 19L water bottle caps with safety seals. Compatible with all standard polycarbonate carboys and dispensers.',
     details_link: 'Details →',
     prod_tritan_name: '19L Tritan Water Bottle (BPA-Free)', prod_pc_name: '19L Polycarbonate Bottle',
+    version_holder: 'With Handle', version_straight: 'Classic',
     drag_hint: 'Drag to rotate 360°',
     tech_quality_title: 'Technical & Quality',
     tech_mat: 'Material', tech_trace: 'Traceability', tech_cert: 'Certification',
@@ -211,8 +213,8 @@ const T = {
     t360_title_5: 'No Taste Transfer', t360_desc_5: 'Will not retain odors or alter the water taste, ensuring top hygiene.',
     t360_title_6: 'Economic Efficiency', t360_desc_6: 'Superior resistance significantly reduces total operating cost.',
     select_color: 'Select Color',
-    prod_clasic_name: '19L Classic Polycarbonate Bottle',
-    prod_maner_name: '19L Tritan (BPA-Free) Bottle with Handle',
+    prod_clasic_name: '19L Polycarbonate Bottle',
+    prod_maner_name: '19L Tritan (BPA-Free) Bottle',
     bottle_color: 'Transparent / Blue (Availability may vary)',
     form_sending: '⏳ Sending...',
     form_gdpr_consent: 'I agree to the <a href="/about" style="color:var(--primary);text-decoration:underline">privacy policy</a>.',
@@ -232,6 +234,35 @@ const t = (key) => T[currentLang]?.[key] || T.ro[key] || key;
 // Expose globally for animations.js
 window.T = T;
 Object.defineProperty(window, 'currentLang', { get: () => currentLang });
+
+const perfPrefs = {
+  reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  saveData: navigator.connection && navigator.connection.saveData === true,
+  lowCores: (navigator.hardwareConcurrency || 8) <= 4,
+  lowMemory: typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4
+};
+const isPerfLite = () =>
+  perfPrefs.reducedMotion ||
+  perfPrefs.saveData ||
+  perfPrefs.lowCores ||
+  perfPrefs.lowMemory ||
+  window.innerWidth <= 900;
+
+let particleCleanup = null;
+let viewerCleanup = null;
+let activeBottleVersion = 'holder'; // 'holder' or 'straight'
+const IMAGES_HOLDER = [
+  'img/products/handle-v1/yandan-1.webp',
+  'img/products/handle-v2/Pozitie 1.webp',
+  'img/products/handle-v2/Pozitie 2.webp',
+  'img/products/handle-v2/Pozitia 3.webp',
+  'img/products/handle-v2/Pozitia 4.webp',
+  'img/products/handle-v2/Pozitia 5.webp',
+  'img/products/handle-v2/Pozitia 6.webp'
+];
+const IMAGES_STRAIGHT = [
+  'img/products/classic/yandan.webp'
+];
 
 /* ===================== LANGUAGE ===================== */
 function setLang(lang) {
@@ -490,16 +521,36 @@ window.scrollToContact = function () {
 /* ===================== HERO PARTICLES CANVAS ===================== */
 function initParticles(canvas) {
   if (!canvas) return;
+  if (particleCleanup) {
+    particleCleanup();
+    particleCleanup = null;
+  }
+  if (isPerfLite()) {
+    canvas.style.display = 'none';
+    return;
+  }
+  canvas.style.display = '';
+
   const ctx = canvas.getContext('2d');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let w, h, particles = [];
+  let rafId = 0;
+  let shouldAnimate = !prefersReducedMotion;
+  const maxDpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
   function resize() {
-    w = canvas.width = canvas.parentElement.offsetWidth;
-    h = canvas.height = canvas.parentElement.offsetHeight;
+    const parent = canvas.parentElement;
+    if (!parent) return;
+    w = parent.offsetWidth;
+    h = parent.offsetHeight;
+    canvas.width = Math.floor(w * maxDpr);
+    canvas.height = Math.floor(h * maxDpr);
+    ctx.setTransform(maxDpr, 0, 0, maxDpr, 0, 0);
   }
   resize();
-  window.addEventListener('resize', resize);
-  for (let i = 0; i < 60; i++) {
+  window.addEventListener('resize', resize, { passive: true });
+  const particleCount = Math.min(42, Math.max(28, Math.floor((w * h) / 50000)));
+  for (let i = 0; i < particleCount; i++) {
     particles.push({
       x: Math.random() * w, y: Math.random() * h,
       vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3,
@@ -507,6 +558,7 @@ function initParticles(canvas) {
     });
   }
   function drawFrame(animate) {
+    rafId = 0;
     ctx.clearRect(0, 0, w, h);
     ctx.strokeStyle = 'rgba(255,255,255,0.025)';
     ctx.lineWidth = 1;
@@ -521,10 +573,26 @@ function initParticles(canvas) {
       ctx.fillStyle = `rgba(72,202,228,${p.a})`;
       ctx.fill();
     });
-    if (animate) requestAnimationFrame(() => drawFrame(true));
+    if (animate && shouldAnimate) rafId = requestAnimationFrame(() => drawFrame(true));
   }
-  // Static single frame for reduced-motion users, animated loop for others
+  const visibilityObserver = new IntersectionObserver((entries) => {
+    const visible = entries.some((entry) => entry.isIntersecting);
+    shouldAnimate = visible && !prefersReducedMotion;
+    if (shouldAnimate && !rafId) drawFrame(true);
+  }, { threshold: 0.05 });
+  visibilityObserver.observe(canvas);
+
   drawFrame(!prefersReducedMotion);
+
+  particleCleanup = () => {
+    shouldAnimate = false;
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = 0;
+    }
+    visibilityObserver.disconnect();
+    window.removeEventListener('resize', resize);
+  };
 }
 
 /* observeElements() handled by animations.js */
@@ -766,12 +834,12 @@ function renderHome() {
           <div class="products-grid stagger-items">
             <a href="#" onclick="openProductModal('bottle-tritan'); return false;" class="product-card" data-animate style="--item-index: 1">
               <span class="badge-b2b" style="background:#000; color:#fff; border-color:#333;">Premium</span>
-              <div class="product-img"><img src="img/products/handle-v1/yandan-1.webp" alt="bidon Tritan 19L" loading="lazy"></div>
+              <div class="product-img"><img src="${IMAGES_HOLDER[0]}" alt="bidon Tritan 19L" loading="lazy"></div>
               <div class="product-info"><h3>${t('prod_tritan_name')}</h3><p>${t('bottle_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
             <a href="#" onclick="openProductModal('bottle-polycarbonate'); return false;" class="product-card" data-animate style="--item-index: 2">
               <span class="badge-b2b">B2B Only</span>
-              <div class="product-img"><img src="img/products/classic/yandan.webp" alt="bidon PC 19L" loading="lazy"></div>
+              <div class="product-img"><img src="${IMAGES_STRAIGHT[0]}" alt="bidon PC 19L" loading="lazy"></div>
               <div class="product-info"><h3>${t('prod_pc_name')}</h3><p>${t('bottle_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
             <a href="#" onclick="openProductModal('capac-bidon'); return false;" class="product-card" data-animate style="--item-index: 3">
@@ -871,12 +939,12 @@ function renderProducts() {
           <div class="products-grid stagger-items">
             <a href="#" onclick="openProductModal('bottle-tritan'); return false;" class="product-card" data-animate style="--item-index: 1">
               <span class="badge-b2b" style="background:#000; color:#fff; border-color:#333;">Premium</span>
-              <div class="product-img"><img src="img/products/handle-v1/yandan-1.webp" alt="bidon Tritan 19L" loading="lazy"></div>
+              <div class="product-img"><img src="${IMAGES_HOLDER[0]}" alt="bidon Tritan 19L" loading="lazy"></div>
               <div class="product-info"><h3>${t('prod_tritan_name')}</h3><p>${t('bottle_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
             <a href="#" onclick="openProductModal('bottle-polycarbonate'); return false;" class="product-card" data-animate style="--item-index: 2">
               <span class="badge-b2b">B2B Only</span>
-              <div class="product-img"><img src="img/products/classic/yandan.webp" alt="bidon PC 19L" loading="lazy"></div>
+              <div class="product-img"><img src="${IMAGES_STRAIGHT[0]}" alt="bidon PC 19L" loading="lazy"></div>
               <div class="product-info"><h3>${t('prod_pc_name')}</h3><p>${t('bottle_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
             <a href="#" onclick="openProductModal('capac-bidon'); return false;" class="product-card" data-animate style="--item-index: 3">
@@ -902,15 +970,7 @@ function renderProductDetail(slug) {
   const products = {
     'bottle-tritan': {
       name: 'prod_tritan_name', desc: 'bottle_desc', type: 'bottle',
-      images: [
-        'img/products/handle-v1/yandan-1.webp',
-        'img/products/handle-v2/Pozitie 1.webp',
-        'img/products/handle-v2/Pozitie 2.webp',
-        'img/products/handle-v2/Pozitia 3.webp',
-        'img/products/handle-v2/Pozitia 4.webp',
-        'img/products/handle-v2/Pozitia 5.webp',
-        'img/products/handle-v2/Pozitia 6.webp'
-      ],
+      versions: { 'holder': IMAGES_HOLDER, 'straight': IMAGES_STRAIGHT },
       imgAlt: 'bidon Tritan 19L', dim: 'bottle_dim', mat: 'Tritan™ (100% Virgin BPA-Free)', wt: '825 - 835 g', col: 'tritan_color', moq: 'bottle_moq', pkg: 'tritan_pkg', uses: 'bottle_uses', faqs: 'bottle_faqs',
       availableColors: [
         { name: 'Crystal Clear', hex: 'transparent' },
@@ -924,9 +984,7 @@ function renderProductDetail(slug) {
     },
     'bottle-polycarbonate': {
       name: 'prod_pc_name', desc: 'bottle_desc', type: 'bottle',
-      images: [
-        'img/products/classic/yandan.webp'
-      ],
+      versions: { 'holder': IMAGES_HOLDER, 'straight': IMAGES_STRAIGHT },
       imgAlt: 'bidon Policarbonat 19L', dim: 'bottle_dim', mat: 'Policarbonat (100% Virgin)', wt: '750 - 760 g', col: 'bottle_color', moq: 'bottle_moq', pkg: 'tritan_pkg', uses: 'bottle_uses', faqs: 'bottle_faqs',
       schema: { "@context": "https://schema.org", "@type": "Product", "name": "19L Polycarbonate Bottle", "brand": { "@type": "Brand", "name": "ContecPark" } }
     },
@@ -949,6 +1007,8 @@ function renderProductDetail(slug) {
   };
   const p = products[slug];
   if (!p) return renderProducts();
+  
+  const currentImages = p.type === 'bottle' ? p.versions[activeBottleVersion] : p.images;
   const uses = t(p.uses);
   const faqs = t(p.faqs);
   // Inject product + FAQ schema
@@ -965,12 +1025,12 @@ function renderProductDetail(slug) {
       </div>
       <div class="product-detail-img" id="product-viewer-box" data-animate>
         <div class="main-img-container" id="main-img-container">
-          ${p.images.map((img, i) => `
+          ${currentImages.map((img, i) => `
             <img src="${img}" alt="${p.imgAlt} - ${i+1}" class="viewer-img ${i === 0 ? 'active' : ''}">
           `).join('')}
           <div id="tint-overlay" class="product-tint-layer ${p.type === 'bottle' ? 'bottle-tint' : ''}"></div>
         </div>
-        ${p.images.length > 1 ? `
+        ${currentImages.length > 1 ? `
           <div class="viewer-360-overlay" id="viewer-overlay">
             <div class="pulse-ring"></div>
             <span>360°</span>
@@ -995,6 +1055,15 @@ function renderProductDetail(slug) {
                 <tr><th>${t('spec_moq')}</th><td>${t(p.moq)}</td></tr>
                 <tr><th>${t('spec_pkg')}</th><td>${t(p.pkg)}</td></tr>
             </table>
+
+            ${p.type === 'bottle' ? `
+            <div class="version-selection-wrap" data-animate>
+                <h4>Model</h4>
+                <div class="version-options">
+                    <button class="version-btn ${activeBottleVersion === 'holder' ? 'active' : ''}" onclick="switchBottleVersion('holder')">${t('version_holder')}</button>
+                    <button class="version-btn ${activeBottleVersion === 'straight' ? 'active' : ''}" onclick="switchBottleVersion('straight')">${t('version_straight')}</button>
+                </div>
+            </div>` : ''}
 
             ${p.availableColors ? `
             <div class="color-selection-wrap" data-animate>
@@ -1060,8 +1129,8 @@ function renderAbout() {
       
       <h2 class="section-title" style="margin-top:60px" data-animate>${t('about_produce')}</h2>
       <div class="about-products-mini stagger-items">
-        <a href="#" onclick="openProductModal('bottle-polycarbonate'); return false;" class="mini-card" data-animate style="--item-index: 1"><div class="mc-icon"><img src="img/products/classic/yandan.webp" alt="bidon 19L"></div><h4>${t('prod_clasic_name')}</h4></a>
-        <a href="#" onclick="openProductModal('bottle-tritan'); return false;" class="mini-card" data-animate style="--item-index: 2"><div class="mc-icon"><img src="img/products/handle-v1/yandan-1.webp" alt="bidon 19L cu maner"></div><h4>${t('prod_maner_name')}</h4></a>
+        <a href="#" onclick="openProductModal('bottle-polycarbonate'); return false;" class="mini-card" data-animate style="--item-index: 1"><div class="mc-icon"><img src="${IMAGES_STRAIGHT[0]}" alt="bidon 19L"></div><h4>${t('prod_clasic_name')}</h4></a>
+        <a href="#" onclick="openProductModal('bottle-tritan'); return false;" class="mini-card" data-animate style="--item-index: 2"><div class="mc-icon"><img src="${IMAGES_HOLDER[0]}" alt="bidon 19L cu maner"></div><h4>${t('prod_maner_name')}</h4></a>
         <a href="#" onclick="openProductModal('capac-bidon'); return false;" class="mini-card" data-animate style="--item-index: 3"><div class="mc-icon"><img src="img/products/cap/1.webp" alt="capac bidon"></div><h4>${t('prod_cap')}</h4></a>
       </div>
 
@@ -1202,6 +1271,14 @@ function route() {
   const header = document.getElementById('site-header');
   if (hash === '/') { header.classList.add('on-hero'); }
   else { header.classList.remove('on-hero'); }
+  if (hash !== '/' && particleCleanup) {
+    particleCleanup();
+    particleCleanup = null;
+  }
+  if (!hash.startsWith('/products/') && viewerCleanup) {
+    viewerCleanup();
+    viewerCleanup = null;
+  }
   // Post-render hooks
   requestAnimationFrame(() => {
     if (hash === '/') initParticles(document.getElementById('hero-canvas'));
@@ -1218,6 +1295,11 @@ window.updateActiveImg = function (index) {
 };
 
 function init360Viewer() {
+  if (viewerCleanup) {
+    viewerCleanup();
+    viewerCleanup = null;
+  }
+
   const container = document.getElementById('product-viewer-box');
   const imgs = document.querySelectorAll('.viewer-img');
   const overlay = document.getElementById('viewer-overlay');
@@ -1295,15 +1377,13 @@ function init360Viewer() {
   };
 
   // Tüm container alanından sürüklemeyi yakala
-  container.removeEventListener('mousedown', handleStart);
   container.addEventListener('mousedown', handleStart);
-  window.addEventListener('mousemove', handleMove);
-  window.addEventListener('mouseup', handleEnd);
+  window.addEventListener('mousemove', handleMove, { passive: true });
+  window.addEventListener('mouseup', handleEnd, { passive: true });
 
-  container.removeEventListener('touchstart', handleStart);
-  container.addEventListener('touchstart', handleStart);
-  window.addEventListener('touchmove', handleMove);
-  window.addEventListener('touchend', handleEnd);
+  container.addEventListener('touchstart', handleStart, { passive: true });
+  window.addEventListener('touchmove', handleMove, { passive: true });
+  window.addEventListener('touchend', handleEnd, { passive: true });
 
   // Initial tint sync if exists
   const tint = document.getElementById('tint-overlay');
@@ -1311,6 +1391,15 @@ function init360Viewer() {
       tint.style.webkitMaskImage = `url('${imgs[0].src}')`;
       tint.style.maskImage = `url('${imgs[0].src}')`;
   }
+
+  viewerCleanup = () => {
+    container.removeEventListener('mousedown', handleStart);
+    window.removeEventListener('mousemove', handleMove);
+    window.removeEventListener('mouseup', handleEnd);
+    container.removeEventListener('touchstart', handleStart);
+    window.removeEventListener('touchmove', handleMove);
+    window.removeEventListener('touchend', handleEnd);
+  };
 }
 
 /* ===================== DYNAMIC COLOR TINTING ===================== */
@@ -1355,6 +1444,11 @@ window.applyProductColor = function(el, hex) {
   }
 };
 
+window.switchBottleVersion = function(version) {
+  activeBottleVersion = version;
+  route();
+};
+
 function updateNavActive(hash) {
   document.querySelectorAll('.nav-link, .mobile-link').forEach(a => {
     const href = a.getAttribute('href')?.replace('#', '') || '/';
@@ -1394,6 +1488,8 @@ document.getElementById('accept-cookies')?.addEventListener('click', () => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
+  if (isPerfLite()) document.documentElement.classList.add('perf-lite');
+  if (window.innerWidth <= 900) document.documentElement.classList.add('perf-mobile');
   setLang(currentLang);
   runIntro();
   route();
@@ -1408,6 +1504,11 @@ function initCustomCursor() {
   const cursor = document.getElementById('cursor');
   const ripple = document.getElementById('cursor-ripple');
   if (!cursor || !ripple) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches || isPerfLite()) {
+    cursor.style.display = 'none';
+    ripple.style.display = 'none';
+    return;
+  }
 
   window.addEventListener('mousemove', e => {
     const { clientX: x, clientY: y } = e;
@@ -1441,9 +1542,11 @@ function initProductModal() {
 
   const productData = {
     'bottle-tritan': {
+      id: 'bottle-tritan',
       title: T[currentLang].prod_tritan_name,
-      image: 'img/products/handle-v1/yandan-1.webp',
+      versions: { 'holder': IMAGES_HOLDER[0], 'straight': IMAGES_STRAIGHT[0] },
       desc: T[currentLang].bottle_desc,
+      type: 'bottle',
       specs: [
         { label: T[currentLang].spec_dim, value: T[currentLang].bottle_dim },
         { label: T[currentLang].spec_mat, value: 'Tritan™ (100% Virgin BPA-Free)' },
@@ -1453,9 +1556,11 @@ function initProductModal() {
       ]
     },
     'bottle-polycarbonate': {
+      id: 'bottle-polycarbonate',
       title: T[currentLang].prod_pc_name,
-      image: 'img/products/classic/yandan.webp',
+      versions: { 'holder': IMAGES_HOLDER[0], 'straight': IMAGES_STRAIGHT[0] },
       desc: T[currentLang].bottle_desc,
+      type: 'bottle',
       specs: [
         { label: T[currentLang].spec_dim, value: T[currentLang].bottle_dim },
         { label: T[currentLang].spec_mat, value: 'Policarbonat (100% Virgin)' },
@@ -1496,21 +1601,33 @@ function initProductModal() {
     { name: 'Golden Yellow', hex: '#FCD116' },
     { name: 'Ruby Red', hex: '#CE1126' }
   ];
+  productData['bottle-polycarbonate'].availableColors = productData['bottle-tritan'].availableColors;
 
   window.openProductModal = function(id) {
     const data = productData[id];
     if (!data) return;
 
+    const modalImage = data.type === 'bottle' ? data.versions[activeBottleVersion] : data.image;
+
     body.innerHTML = `
       <div class="modal-content">
         <div class="modal-image-side" data-animate>
-          <img src="${data.image}" alt="${data.title}">
+          <img src="${modalImage}" alt="${data.title}">
           <div id="modal-tint-overlay" class="product-tint-layer ${data.type === 'bottle' ? 'bottle-tint' : ''}"></div>
         </div>
         <div class="modal-info-side">
           <h2 data-animate>${data.title}</h2>
           <p class="modal-desc" data-animate>${data.desc}</p>
           
+          ${data.type === 'bottle' ? `
+          <div class="version-selection-wrap modal-version-picker" data-animate>
+              <h4>Model</h4>
+              <div class="version-options">
+                  <button class="version-btn ${activeBottleVersion === 'holder' ? 'active' : ''}" onclick="switchBottleVersionModal('${data.id}', 'holder')">${t('version_holder')}</button>
+                  <button class="version-btn ${activeBottleVersion === 'straight' ? 'active' : ''}" onclick="switchBottleVersionModal('${data.id}', 'straight')">${t('version_straight')}</button>
+              </div>
+          </div>` : ''}
+
           ${data.availableColors ? `
           <div class="color-selection-wrap modal-color-picker" data-animate>
               <h4>${t('select_color')}</h4>
@@ -1539,6 +1656,13 @@ function initProductModal() {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     setTimeout(observeElements, 100);
+  };
+
+  window.switchBottleVersionModal = function(id, version) {
+    activeBottleVersion = version;
+    openProductModal(id);
+    // Also re-render background page if it's the products page
+    if (location.pathname.startsWith('/products')) route();
   };
 
   close.addEventListener('click', () => {
