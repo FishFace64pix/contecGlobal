@@ -121,17 +121,19 @@
             if (frameIndex !== lastFrameIndex) {
                 const prev = images[lastFrameIndex];
                 const prevNext = images[lastFrameIndex + 1];
-                if (prev) { prev.style.opacity = '0'; prev.style.zIndex = '1'; }
-                if (prevNext) { prevNext.style.opacity = '0'; prevNext.style.zIndex = '1'; }
+                if (prev) { prev.style.opacity = '0'; prev.style.zIndex = '1'; prev.style.visibility = 'hidden'; }
+                if (prevNext) { prevNext.style.opacity = '0'; prevNext.style.zIndex = '1'; prevNext.style.visibility = 'hidden'; }
                 lastFrameIndex = frameIndex;
             }
             const current = images[frameIndex];
             const next = images[frameIndex + 1];
             if (current) {
+                current.style.visibility = 'visible';
                 current.style.opacity = String(1 - frameProgress);
                 current.style.zIndex = '2';
             }
             if (next) {
+                next.style.visibility = 'visible';
                 next.style.opacity = String(frameProgress);
                 next.style.zIndex = '3';
             }
