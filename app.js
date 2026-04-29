@@ -91,7 +91,7 @@ const T = {
     events_title: 'Evenimente și Expoziții',
     events_desc: 'Suntem onorați să fim prezenți pe scena celor mai mari evenimente din Europa:',
     factory_title: 'Producție de Precizie',
-    factory_desc: 'Fabrica este susținută de echipamente tehnologice avansate (inclusiv echipament de extracție ASBX) garantându-ți cel mai sigur ambalaj.',
+    factory_desc: 'Fabrica este susținută de mașina ASB 650 EXHD și echipamente de ultimă generație, garantând cel mai sigur ambalaj.',
     t360_title_1: 'Siguranță Necompromisă', t360_desc_1: 'BPA-Free, nu eliberează substanțe chimice în apă.',
     t360_title_2: 'Durabilitate Superioară', t360_desc_2: 'Mai rezistent la spargere față de plasticul clasic.',
     t360_title_3: 'Durată Lungă de Viață', t360_desc_3: 'Își menține forma în timp, reducând dramatic costurile de înlocuire.',
@@ -205,7 +205,7 @@ const T = {
     events_title: 'Events & Exhibitions',
     events_desc: 'Meet us at the largest B2B exhibitions in Europe:',
     factory_title: 'Precision Manufacturing',
-    factory_desc: 'Our factory is supported by state-of-the-art technological equipment (including ASBX machines) pushing the boundaries of container safety.',
+    factory_desc: 'Our factory is powered by the ASB 650 EXHD machine and cutting-edge equipment, pushing the boundaries of container safety.',
     t360_title_1: 'Health Safe', t360_desc_1: 'BPA-Free, releases zero harmful chemicals into the water.',
     t360_title_2: 'Highly Durable', t360_desc_2: 'Much stronger against cracks and impacts than standard plastics.',
     t360_title_3: 'Long Lasting', t360_desc_3: 'Maintains structural integrity longer, lowering replacement costs.',
@@ -272,6 +272,7 @@ function setLang(lang) {
   document.documentElement.lang = lang;
   updateSEO();
   updateStaticI18n();
+  initProductModal();
   route();
 }
 
@@ -775,32 +776,13 @@ function renderHome() {
       </div>
     </section>
 
-    ${waveDivider}
-
-    <div class="feature-section section-padding">
-        <div class="container why-inner">
-            <div class="feature-row">
-                <div class="feature-image" data-animate>
-                    <img src="img-bottle.png" alt="Feature Product">
-                </div>
-                <div class="feature-text" data-animate>
-                    <div class="feature-card">
-                        <div class="feature-icon">🛡️</div>
-                        <h3>${t('h2_title')}</h3>
-                        <p>${t('h2_text')}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- NEW TRITAN HIGHLIGHT SECTION -->
     <section class="section section-padding tritan-highlight-wrap" style="background: linear-gradient(135deg, #0A192F, #112240); color: #fff;">
       <div class="container">
-          <div style="text-align: center; margin-bottom: 60px;">
-              <span class="badge-b2b" style="background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2);">Tritan™ Premium</span>
+          <div class="text-center" style="margin-bottom: 60px;">
+              <span class="badge-b2b" style="display: block; margin: 0 auto 16px; width: fit-content; background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2);">Tritan™ Premium</span>
               <h2 class="section-title" data-animate style="color: #fff;">${t('tritan_highlight_title')}</h2>
-              <p class="section-subtitle" data-animate style="color: rgba(255,255,255,0.7); max-width: 800px; margin: 0 auto;">${t('tritan_highlight_sub')}</p>
+              <p class="section-subtitle center-text" data-animate style="color: rgba(255,255,255,0.7); max-width: 800px; margin: 0 auto;">${t('tritan_highlight_sub')}</p>
           </div>
           <div class="highlights-grid stagger-items" style="margin-top: 40px;">
               <div class="highlight-card" data-animate style="--item-index: 1; background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.1);">
@@ -828,9 +810,9 @@ function renderHome() {
     </section>
 
     <section class="section section-padding">
-      <div class="container">
+      <div class="container text-center">
           <h2 class="section-title" data-animate>${t('products_title')}</h2>
-          <p class="section-subtitle" data-animate>${t('products_sub')}</p>
+          <p class="section-subtitle center-text" data-animate>${t('products_sub')}</p>
           <div class="products-grid stagger-items">
             <a href="#" onclick="openProductModal('bottle-tritan'); return false;" class="product-card" data-animate style="--item-index: 1">
               <span class="badge-b2b" style="background:#000; color:#fff; border-color:#333;">Premium</span>
@@ -865,19 +847,17 @@ function renderHome() {
       </div>
     </section>
 
-    <!-- ASBX MACHINE / FACTORY IMAGES SECTION -->
+    <!-- ASB 650 EXHD MACHINE / FACTORY IMAGES SECTION -->
     <section class="section section-padding" style="background: var(--bg-secondary);">
       <div class="container text-center">
         <h2 class="section-title" data-animate>${t('factory_title')}</h2>
         <p class="section-subtitle center-text" data-animate style="max-width: 600px; margin: 0 auto 40px auto;">${t('factory_desc')}</p>
         <div class="products-grid stagger-items" style="gap: 20px;">
-           <div class="product-img" data-animate style="--item-index: 1; background: var(--border-subtle); border-radius: 16px; height: 400px; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; overflow: hidden; border: 1px solid var(--border-color);">
-             [ASBX Factory Image Placeholder]
-             <!-- <img src="img/factory-asbx-1.jpg" alt="ASBX Extrusion Machine" style="width: 100%; height: 100%; object-fit: cover;"> -->
+           <div class="product-img" data-animate style="--item-index: 1; border-radius: 16px; height: 400px; overflow: hidden; border: 1px solid var(--border-color);">
+             <img src="img/products/makina/Contec18.jpg" alt="Contec Manufacturing Machine" style="width: 100%; height: 100%; object-fit: cover;">
            </div>
-           <div class="product-img" data-animate style="--item-index: 2; background: var(--border-subtle); border-radius: 16px; height: 400px; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; overflow: hidden; border: 1px solid var(--border-color);">
-             [ASBX Machine System Placeholder]
-             <!-- <img src="img/factory-asbx-2.jpg" alt="Automated Manufacturing" style="width: 100%; height: 100%; object-fit: cover;"> -->
+           <div class="product-img" data-animate style="--item-index: 2; border-radius: 16px; height: 400px; overflow: hidden; border: 1px solid var(--border-color);">
+             <img src="img/products/makina/Contec43.jpg" alt="Contec Production Equipment" style="width: 100%; height: 100%; object-fit: cover;">
            </div>
         </div>
       </div>
@@ -885,28 +865,36 @@ function renderHome() {
 
     <!-- EVENTS SECTION -->
     <section class="section section-padding">
-      <div class="container">
-          <h2 class="section-title text-center" data-animate>${t('events_title')}</h2>
+      <div class="container text-center">
+          <h2 class="section-title" data-animate>${t('events_title')}</h2>
           <p class="section-subtitle center-text" data-animate>${t('events_desc')}</p>
           <div class="events-list stagger-items" style="margin-top: 40px; display: flex; flex-direction: column; gap: 16px; max-width: 700px; margin: 40px auto 0;">
-            
+
             <div data-animate style="--item-index: 1; padding: 24px 30px; background: var(--bg-secondary); border-radius: 16px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: transform 0.3s;">
+                <div style="display:flex; align-items:center; gap: 16px;">
+                  <span style="font-weight:700; font-size: 1.5rem; color: var(--primary);">2023</span>
+                  <span style="font-size: 1.2rem; font-weight:500;">Milano</span>
+                </div>
+                <span class="badge-b2b" style="margin:0;">Italy</span>
+            </div>
+
+            <div data-animate style="--item-index: 2; padding: 24px 30px; background: var(--bg-secondary); border-radius: 16px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: transform 0.3s;">
                 <div style="display:flex; align-items:center; gap: 16px;">
                   <span style="font-weight:700; font-size: 1.5rem; color: var(--primary);">2024</span>
                   <span style="font-size: 1.2rem; font-weight:500;">Bucharest</span>
                 </div>
                 <span class="badge-b2b" style="margin:0;">Romania</span>
             </div>
-            
-            <div data-animate style="--item-index: 2; padding: 24px 30px; background: var(--bg-secondary); border-radius: 16px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: transform 0.3s;">
+
+            <div data-animate style="--item-index: 3; padding: 24px 30px; background: var(--bg-secondary); border-radius: 16px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: transform 0.3s;">
                 <div style="display:flex; align-items:center; gap: 16px;">
                   <span style="font-weight:700; font-size: 1.5rem; color: var(--primary);">2025</span>
                   <span style="font-size: 1.2rem; font-weight:500;">Milan</span>
                 </div>
                 <span class="badge-b2b" style="margin:0;">Italy</span>
             </div>
-            
-            <div data-animate style="--item-index: 3; padding: 24px 30px; background: var(--bg-secondary); border-radius: 16px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: transform 0.3s;">
+
+            <div data-animate style="--item-index: 4; padding: 24px 30px; background: var(--bg-secondary); border-radius: 16px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: transform 0.3s;">
                 <div style="display:flex; align-items:center; gap: 16px;">
                   <span style="font-weight:700; font-size: 1.5rem; color: var(--primary);">2026</span>
                   <span style="font-size: 1.2rem; font-weight:500;">Torremolinos</span>
@@ -919,9 +907,9 @@ function renderHome() {
     </section>
 
     <section class="section section-padding">
-      <div class="container">
+      <div class="container text-center">
           <h2 class="section-title" data-animate>${t('gallery_title')}</h2>
-          <p class="section-subtitle" data-animate>${t('gallery_sub')}</p>
+          <p class="section-subtitle center-text" data-animate>${t('gallery_sub')}</p>
           <div class="video-container" data-animate style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 24px; background: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid var(--border-subtle);">
             <iframe src="https://www.youtube.com/embed/fEpE03kfWFg?rel=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
@@ -1421,7 +1409,7 @@ window.applyProductColor = function(el, hex) {
   if (tint && activeImg) {
     tint.style.backgroundColor = hex;
     const isBottle = tint.classList.contains('bottle-tint');
-    tint.style.opacity = (hex === 'transparent') ? '0' : (isBottle ? '0.45' : '0.85');
+    tint.style.opacity = (hex === 'transparent') ? '0' : (isBottle ? '0.65' : '0.85');
     tint.style.webkitMaskImage = `url('${activeImg.src}')`;
     tint.style.maskImage = `url('${activeImg.src}')`;
     
@@ -1437,7 +1425,7 @@ window.applyProductColor = function(el, hex) {
   if (modalTint && modalImg) {
     modalTint.style.backgroundColor = hex;
     const isBottle = modalTint.classList.contains('bottle-tint');
-    modalTint.style.opacity = hex === 'transparent' ? '0' : (isBottle ? '0.45' : '0.85');
+    modalTint.style.opacity = hex === 'transparent' ? '0' : (isBottle ? '0.65' : '0.85');
     modalTint.style.webkitMaskImage = `url('${modalImg.src}')`;
     modalTint.style.maskImage = `url('${modalImg.src}')`;
     modalImg.style.filter = (hex === 'transparent') ? '' : 'grayscale(1) brightness(1.1)';
