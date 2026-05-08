@@ -2,9 +2,9 @@
 const T = {
   ro: {
     nav_home: 'Acasă', nav_products: 'Produse', nav_about: 'Despre Noi', nav_contact: 'Contact',
-    hero_title: 'Sănătate și Calitate în Fiecare <span class="accent">Bidon</span> – Made in Romania',
-    hero_sub: 'BPA-Free | Baby Safe - Adult Safe. Suntem producători români de bidoane 19L și capace, oferind soluții sigure pentru depozitarea apei pe termen lung.',
-    hero_cta1: 'Produse BPA-Free', hero_cta2: 'Contact Producător',
+    hero_main_1: 'Mai mult decât un BIDON', hero_main_2: 'un STANDARD pentru apă', hero_prefix: 'Este',
+    hero_sub: 'Suntem producători români de bidoane 19L și capace, oferind soluții sigure pentru depozitarea apei pe termen lung.',
+    hero_cta1: 'Produse', hero_cta2: 'Contact',
     highlights_title: 'Tehnologie Contec', highlights_sub: 'Soluții inovatoare pentru distribuitorii de apă B2B, cu certificări de contact alimentar.',
     h1_title: 'BPA-Free & Tritan', h1_text: 'Materialele noastre (inclusiv Tritan™) sunt fabricate fără bisfenol A (BPA) și respectă toate certificările de siguranță alimentară.',
     h2_title: 'Siguranță Totală', h2_text: 'Conceptul "Baby Safe - Adult Safe" garantează că bidoanele noastre sunt sigure chiar și pentru sugari, având rezistență la mirosuri și gust neutru.',
@@ -30,8 +30,9 @@ const T = {
     wp1_title: 'Transparență', wp1_text: 'Claritate ridicată pentru monitorizarea nivelului apei.',
     wp2_title: 'Fără Odor / Gust', wp2_text: 'Material inert care nu reține mirosuri sau pete.',
     wp3_title: 'Hot-Fill Ready', wp3_text: 'Rezistență la temperaturi înalte și cicluri de spălare.',
-    wp4_title: 'Made in Romania', wp4_text: 'Producție locală certificată, livrare rapidă București.',
+    wp4_title: 'Made in Romania', wp4_text: 'Producție locală certificată, livrare rapidă în toată țara.',
     gallery_title: 'Producție și Calitate', gallery_sub: 'Vezi cum fabricăm bidoanele și capacele noastre în unitatea din România.',
+    badge_top_choice: 'Alegerea #1',
     // Products Page
     products_page_title: 'Produse Premium', products_page_sub: 'Descoperă gama de bidoane 19 litri Tritan și Policarbonat, exclusiv pentru partenerii B2B.',
     // Product Detail
@@ -40,10 +41,10 @@ const T = {
     cap_name: 'Capac Bidon 19L', cap_desc: 'Capacul bidon 19L oferă o etanșare sigură și ermetică. Fabricat din material de înaltă calitate, asigură protecție optimă.',
     spec_dim: 'Dimensiuni', spec_mat: 'Material', spec_weight: 'Greutate', spec_color: 'Culoare', spec_moq: 'Cantitate minimă', spec_pkg: 'Ambalare',
     bottle_dim: 'Ø 271 × 490 mm', bottle_weight: '750 - 835 g', bottle_moq: '100 bucăți',
-    tritan_pkg: '1 cutie = 8 unități. Fiecare bidon este ambalat individual.',
+    tritan_pkg: '1 cutie = 8 unități. Fiecare bidon este ambalat individual. (Comandă minimă: 100 bucăți)',
     tritan_color: 'Transparent / Albastru (Disponibilitatea poate varia)',
-    cap_pkg: '1 cutie = 600 unități.', cap_colors: 'Toate culorile disponibile',
-    cap_dim: 'Ø 55 mm', cap_mat: 'Polietilenă (PE)', cap_weight: '8 g', cap_color: 'Alb / Albastru', cap_moq: '500 bucăți',
+    cap_pkg: '1 cutie = 600 unități. (Comandă minimă: 1 cutie)', cap_colors: 'Toate culorile disponibile',
+    cap_dim: 'Ø 55 mm', cap_mat: 'Polietilenă (PE)', cap_weight: '8 g', cap_color: 'Toate culorile', cap_moq: '600 bucăți',
     use_cases_title: 'Utilizări',
     bottle_uses: ['Distribuție apă potabilă', 'Dispensere de apă birouri', 'Industria HoReCa', 'Livrare apă la domiciliu', 'Depozitare apă purificată'],
     cap_uses: ['Etanșare bidoane 19L', 'Protecție transport', 'Igienă și siguranță alimentară', 'Reutilizare multiplă', 'Compatibilitate universală'],
@@ -61,8 +62,9 @@ const T = {
     back_products: '← Înapoi la Produse',
     // About
     about_title: 'Cine Suntem',
-    about_p1: 'ContecPark este un producător român de bidoane din policarbonat și Tritan (BPA-Free) de 19 litri și capace bidon, cu sediul în București, România. Cu experiență vastă în industria ambalajelor pentru apă, ne-am dedicat excelenței și inovației în fiecare produs.',
-    about_p2: 'Echipamentele noastre moderne de producție și echipa noastră experimentată ne permit să livrăm produse de cea mai înaltă calitate, la prețuri competitive, către partenerii noștri B2B din toată România și Europa.',
+    about_p1: 'Contec Park SRL este o companie românească specializată în producția și furnizarea de soluții de ambalaje din plastic, având un accent puternic pe industria distribuției de apă. Compania dezvoltă și fabrică produse precum bidoane de apă de 19 litri, capace și accesorii conexe, sprijinind afacerile din sectorul apei îmbuteliate.',
+    about_p2: 'Cu experiență în domeniul prelucrării plasticului și al ambalajelor, Contec Park SRL își propune să ofere soluții durabile, sigure și fiabile pentru producătorii și distribuitorii de apă. Activitatea companiei este centrată pe îmbunătățirea eficienței în logistica apei prin sisteme de ambalare de înaltă calitate, reutilizabile, concepute pentru utilizare pe termen lung.',
+    about_p3: 'Combinând expertiza tehnică cu nevoile practice ale industriei, Contec Park SRL se poziționează ca un partener pentru afacerile care necesită calitate constantă, design funcțional și soluții de ambalare sigure pentru distribuția de apă în volume mari.',
     about_produce: 'Ce Producem',
     about_address_title: 'Sediu',
     about_map_label: '📍 Hartă Google Maps',
@@ -71,16 +73,16 @@ const T = {
     footer_desc: 'Producător român de bidoane și capace pentru apă de 19 litri.',
     footer_nav: 'Navigare', footer_products: 'Produse', footer_contact: 'Contact',
     footer_rights: 'Toate drepturile rezervate.',
-    seo_title: 'ContecPark | Producător Bidoane 19L Policarbonat & Capace București',
-    seo_desc: 'ContecPark produce bidoane din policarbonat de 19 litri și capace. Cel mai de încredere producător B2B de bidoane apă în București, România.',
+    seo_title: 'ContecPark | Producător Bidoane 19L Policarbonat & Capace România',
+    seo_desc: 'ContecPark produce bidoane din policarbonat de 19 litri și capace. Cel mai de încredere producător B2B de bidoane apă din România.',
     seo_products_title: 'Produse | Bidoane 19L & Capace Policarbonat | ContecPark',
     seo_products_desc: 'Descoperă bidoanele noastre de 19 litri din policarbonat și capacele cu sigiliu. Producție B2B de înaltă calitate în România.',
-    seo_about_title: 'Despre Noi | ContecPark - Fabrică de Bidoane 19L în București',
+    seo_about_title: 'Despre Noi | ContecPark - Fabrică de Bidoane 19L din România',
     seo_about_desc: 'Află mai multe despre ContecPark, producător român specializat în bidoane 19L policarbonat și accesorii pentru distribuția apei.',
     cookie_text: 'Acest site folosește cookie-uri și stocare locală pentru a îmbunătăți experiența utilizatorului.',
     cookie_link: 'Află mai multe',
     cookie_accept: 'Am înțeles',
-    
+
     // TRITAN & EVENTS NEW SECTION
     tritan_highlight_title: 'De ce Tritan (BPA-Free)?',
     tritan_highlight_sub: 'Bidoanele din Tritan reprezintă standardul suprem pentru siguranță alimentară, claritate și durabilitate. Alegerea #1 pentru a proteja calitatea apei B2B.',
@@ -115,14 +117,14 @@ const T = {
   },
   en: {
     nav_home: 'Home', nav_products: 'Products', nav_about: 'About', nav_contact: 'Contact',
-    hero_title: 'Health and Quality in Every <span class="accent">Bottle</span> – Made in Romania',
-    hero_sub: 'BPA-Free | Baby Safe - Adult Safe. Romanian manufacturer of 19L bottles and caps for long-term water storage.',
-    hero_cta1: 'BPA-Free Products', hero_cta2: 'Contact Manufacturer',
+    hero_main_1: 'More than a BOTTLE', hero_main_2: 'a STANDARD for water', hero_prefix: "It's",
+    hero_sub: 'Romanian manufacturer of 19L bottles and caps for long-term water storage.',
+    hero_cta1: 'Products', hero_cta2: 'Contact',
     highlights_title: 'Contec Technology', highlights_sub: 'Innovative solutions for B2B water distributors with food-contact certifications.',
     h1_title: 'BPA-Free & Tritan', h1_text: 'Our materials (including Tritan™) are manufactured without Bisphenol A (BPA) and meet global food safety standards.',
     h2_title: 'Ultimate Safety', h2_text: '"Baby Safe - Adult Safe" concept ensures our bottles are safe for infants, with low taste and odor retention.',
     h3_title: 'High Toughness', h3_text: 'Engineered for durability under load, impact resistance, and withstands hot-fill cleaning cycles.',
-    products_title: 'Our Products', products_sub: 'Complete range of 19L polycarbonate water bottles, caps and bottle racks for our B2B partners.',
+    products_title: 'Our Products', products_sub: 'Complete range of 19L polycarbonate water bottles and caps for our B2B partners.',
     prod_bottle: '19L Polycarbonate Water Bottle', prod_bottle_desc: 'Premium 19 liter polycarbonate water bottle manufacturer. Durable, BPA-free, and certified for B2B water distributors in Europe.',
     prod_cap: '19L Bottle Cap with Seal', prod_cap_desc: 'Leak-proof 19L water bottle caps with safety seals. Compatible with all standard polycarbonate carboys and dispensers.',
     details_link: 'Details →',
@@ -143,18 +145,19 @@ const T = {
     wp1_title: 'Experience', wp1_text: 'Years of experience in the water bottle industry.',
     wp2_title: 'Certifications', wp2_text: 'Products certified to European standards.',
     wp3_title: 'B2B', wp3_text: 'Trusted partner for companies and distributors.',
-    wp4_title: 'Local Production', wp4_text: 'Made in Romania, B2B bottle manufacturer Bucharest.',
+    wp4_title: 'Local Production', wp4_text: 'Made in Romania, trusted B2B bottle manufacturer.',
     gallery_title: 'Gallery', gallery_sub: 'Images from our factory and production process.',
+    badge_top_choice: 'Top Choice',
     products_page_title: 'Premium Products', products_page_sub: 'Discover the full range of Tritan and Polycarbonate 19L water bottles, exclusive for B2B partners.',
     badge_text: 'Made in Romania',
     bottle_desc: 'Our 19 liter water bottle is manufactured to the highest quality standards. Ensures exceptional durability, impact resistance and perfect transparency. Ideal for water distributors.',
     cap_name: '19L Bottle Cap', cap_desc: 'Provides a secure and hermetic seal for carboy bottles. Made from high-quality material, it ensures optimal protection and ease of use.',
     spec_dim: 'Dimensions', spec_mat: 'Material', spec_weight: 'Weight', spec_color: 'Color', spec_moq: 'Min. Order Qty', spec_pkg: 'Packaging',
     bottle_dim: 'Ø 271 × 490 mm', bottle_weight: '750 - 835 g', bottle_moq: '100 units',
-    tritan_pkg: '1 box = 8 units. Each bottle is individually packed.',
+    tritan_pkg: '1 box = 8 units. Each bottle is individually packed. (Min. order: 100 units)',
     tritan_color: 'Transparent / Blue (Availability may vary)',
-    cap_pkg: '1 box = 600 units.', cap_colors: 'All colors available',
-    cap_dim: 'Ø 55 mm', cap_mat: 'Polyethylene (PE)', cap_weight: '8 g', cap_color: 'White / Blue', cap_moq: '500 units',
+    cap_pkg: '1 box = 600 units. (Min. order: 1 box)', cap_colors: 'All colors available',
+    cap_dim: 'Ø 55 mm', cap_mat: 'Polyethylene (PE)', cap_weight: '8 g', cap_color: 'All colors', cap_moq: '600 units',
     use_cases_title: 'Use Cases',
     bottle_uses: ['Drinking water distribution', 'Office water dispensers', 'HoReCa industry', 'Home water delivery', 'Purified water storage'],
     cap_uses: ['19L bottle sealing', 'Transport protection', 'Food safety & hygiene', 'Multiple reuse cycles', 'Universal compatibility'],
@@ -175,8 +178,9 @@ const T = {
     ],
     back_products: '← Back to Products',
     about_title: 'Who We Are',
-    about_p1: 'ContecPark is a Romanian manufacturer of 19-liter Tritan (BPA-Free) and Polycarbonate water bottles and bottle caps, headquartered in Bucharest, Romania. With extensive experience in the water packaging industry, we are dedicated to excellence and innovation in every product.',
-    about_p2: 'Our modern production equipment and experienced team allow us to deliver the highest quality products at competitive prices to our B2B partners across Romania and Europe.',
+    about_p1: 'Contec Park SRL is a Romanian company specializing in the production and supply of plastic packaging solutions, with a strong focus on the water distribution industry. The company develops and manufactures products such as 19-liter water bottles, caps, and related accessories, supporting businesses in the bottled water sector.',
+    about_p2: 'With experience in the field of plastic processing and packaging, Contec Park SRL aims to provide durable, safe, and reliable solutions for water producers and distributors. The company’s activity is centered on improving efficiency in water logistics through high-quality, reusable packaging systems designed for long-term use.',
+    about_p3: 'By combining technical know-how with practical industry needs, Contec Park SRL positions itself as a partner for businesses that require consistent quality, functional design, and dependable packaging solutions for large-volume water distribution.',
     about_produce: 'What We Produce',
     about_address_title: 'Headquarters',
     about_map_label: '📍 Google Maps',
@@ -185,8 +189,8 @@ const T = {
     footer_desc: 'Romanian manufacturer of 19L BPA-Free water bottles and caps.',
     footer_nav: 'Navigation', footer_products: 'Products', footer_contact: 'Contact',
     footer_rights: 'All rights reserved.',
-    seo_title: 'ContecPark | 19L BPA-Free Water Bottle Manufacturer | Bucharest',
-    seo_desc: 'ContecPark is a Romanian manufacturer of 19L BPA-Free Tritan and Polycarbonate water bottles and caps. Premium B2B supplier based in Bucharest.',
+    seo_title: 'ContecPark | 19L BPA-Free Water Bottle Manufacturer | Romania',
+    seo_desc: 'ContecPark is a Romanian manufacturer of 19L BPA-Free Tritan and Polycarbonate water bottles and caps. Premium B2B supplier based in Romania.',
     seo_products_title: 'B2B Products | 19L BPA-Free Tritan Bottles & Caps | ContecPark',
     seo_products_desc: 'Explore our range of 19L Tritan BPA-Free and Polycarbonate carboys, sealed caps. High-quality manufacturing for water distributors.',
     seo_about_title: 'About Us | ContecPark - Water Bottle Factory in Romania',
@@ -194,23 +198,23 @@ const T = {
     cookie_text: 'This website uses cookies and local storage to ensure you get the best browsing experience.',
     cookie_link: 'Learn more',
     cookie_accept: 'Got it',
-    
+
     // TRITAN & EVENTS NEW SECTION
     tritan_highlight_title: 'Why Tritan (BPA-Free)?',
-    tritan_highlight_sub: 'Tritan bottles represent the ultimate standard for food safety, clarity, and extreme durability. Discover why they are a long-term investment for premium distributors.',
-    tritan_h1: 'Total Health & Safety', tritan_t1: 'Zero Bisphenol A (BPA) and other toxic agents. Completely safe even for infants and medical use.',
-    tritan_h2: 'Extreme Durability', tritan_t2: 'Incredible resistance to physical impact and temperature shocks (multiple high-temp washing cycles).',
-    tritan_h3: 'Premium Clarity', tritan_t3: 'Glass-like transparency that does not haze even after hundreds of aggressive industrial washes.',
-    tritan_h4: 'Long-Term Value', tritan_t4: 'The slightly higher initial cost is recovered quickly: Tritan bottles withstand up to 50% more reuse cycles compared to standard materials.',
+    tritan_highlight_sub: 'Tritan bottles represent the ultimate standard for food safety, clarity, and durability. Discover why they are a long-term investment for premium distributors.',
+    tritan_h1: 'Total Health & Safety', tritan_t1: 'No Bisphenol A (BPA), Bisphenol S (BPS), or any other bisphenols. Completely safe even for infants and designed specifically for food-contact products (baby bottles, coffee-machine water reservoirs, kitchen bowls, and more).',
+    tritan_h2: 'Extreme Durability', tritan_t2: 'Incredible resistance to impact and high temperatures, including multiple wash cycles similar to polycarbonate.',
+    tritan_h3: 'Premium Clarity', tritan_t3: 'Glass-like transparency that does not haze even after many industrial washes. Increases the perceived value of your water.',
+    tritan_h4: 'Long-Term Value', tritan_t4: 'The slightly higher investment cost is recovered quickly: Tritan bottles withstand up to 50% more reuse cycles compared to its competitors (PET).',
     events_title: 'Events & Exhibitions',
     events_desc: 'Meet us at the largest B2B exhibitions in Europe:',
     factory_title: 'Precision Manufacturing',
     factory_desc: 'Our factory is powered by the ASB 650 EXHD machine and cutting-edge equipment, pushing the boundaries of container safety.',
-    t360_title_1: 'Health Safe', t360_desc_1: 'BPA-Free, releases zero harmful chemicals into the water.',
-    t360_title_2: 'Highly Durable', t360_desc_2: 'Much stronger against cracks and impacts than standard plastics.',
-    t360_title_3: 'Long Lasting', t360_desc_3: 'Maintains structural integrity longer, lowering replacement costs.',
-    t360_title_4: 'Crystal Clear', t360_desc_4: 'Glass-like transparency raises the perceived value of your water.',
-    t360_title_5: 'No Taste Transfer', t360_desc_5: 'Will not retain odors or alter the water taste, ensuring top hygiene.',
+    t360_title_1: 'Health Safe', t360_desc_1: 'BPA-free ensures no harmful chemical release, making it top choice for infant care products.',
+    t360_title_2: 'High impact resistance', t360_desc_2: 'It absorbs shocks instead of cracking or breaking',
+    t360_title_3: 'High durability', t360_desc_3: 'Designed for repeated professional use.',
+    t360_title_4: 'Crystal Clear', t360_desc_4: 'Glass-like transparency increases the perceived value of your water.',
+    t360_title_5: 'No taste or odor transfer', t360_desc_5: 'Does not retain odors or affect water taste.',
     t360_title_6: 'Economic Efficiency', t360_desc_6: 'Superior resistance significantly reduces total operating cost.',
     select_color: 'Select Color',
     prod_clasic_name: '19L Polycarbonate Bottle',
@@ -286,28 +290,28 @@ function updateStaticI18n() {
 function updateSEO() {
   const hash = location.pathname || '/';
   let titleKey = 'seo_title', descKey = 'seo_desc';
-  
+
   if (hash.startsWith('/products/')) { titleKey = 'seo_products_title'; descKey = 'seo_products_desc'; }
   else if (hash === '/products') { titleKey = 'seo_products_title'; descKey = 'seo_products_desc'; }
   else if (hash === '/about') { titleKey = 'seo_about_title'; descKey = 'seo_about_desc'; }
-  
+
   let pageTitle = t(titleKey);
   const pageURL = 'https://contecpark.com' + location.pathname;
-  
+
   if (hash.startsWith('/products/')) {
     const slug = hash.split('/')[2];
-    if(slug === 'bidon-19l-clasic' || slug === 'bottle-polycarbonate') pageTitle = t('prod_clasic_name') + ' - ContecPark';
-    if(slug === 'bidon-19l-maner' || slug === 'bottle-tritan') pageTitle = t('prod_maner_name') + ' - ContecPark';
-    if(slug === 'capac-bidon') pageTitle = t('prod_cap') + ' - ContecPark';
+    if (slug === 'bidon-19l-clasic' || slug === 'bottle-polycarbonate') pageTitle = t('prod_clasic_name') + ' - ContecPark';
+    if (slug === 'bidon-19l-maner' || slug === 'bottle-tritan') pageTitle = t('prod_maner_name') + ' - ContecPark';
+    if (slug === 'capac-bidon') pageTitle = t('prod_cap') + ' - ContecPark';
   }
 
   document.title = pageTitle;
   document.querySelector('meta[name="description"]')?.setAttribute('content', t(descKey));
   document.querySelector('meta[property="og:title"]')?.setAttribute('content', pageTitle);
   document.querySelector('meta[property="og:description"]')?.setAttribute('content', t(descKey));
-  
+
   let ogUrl = document.querySelector('meta[property="og:url"]');
-  if(!ogUrl) {
+  if (!ogUrl) {
     ogUrl = document.createElement('meta');
     ogUrl.setAttribute('property', 'og:url');
     document.head.appendChild(ogUrl);
@@ -315,7 +319,7 @@ function updateSEO() {
   ogUrl.setAttribute('content', pageURL);
 
   let canonical = document.querySelector('link[rel="canonical"]');
-  if(!canonical) {
+  if (!canonical) {
     canonical = document.createElement('link');
     canonical.setAttribute('rel', 'canonical');
     document.head.appendChild(canonical);
@@ -365,7 +369,7 @@ function updateSEO() {
 function initFormValidation() {
   const form = document.querySelector('.contact-form form');
   if (!form) return;
-  
+
   const inputs = form.querySelectorAll('input[required], textarea[required]');
   inputs.forEach(input => {
     input.addEventListener('blur', () => {
@@ -385,10 +389,10 @@ function initFormValidation() {
   });
 }
 
-window.handleFormSubmit = async function(event) {
+window.handleFormSubmit = async function (event) {
   event.preventDefault();
   const form = event.target;
-  
+
   // Custom Validation check (Validate-on-blur implementation per UI/UX guidelines)
   let isValid = true;
   const inputs = form.querySelectorAll('input[required]:not([type="checkbox"]), textarea[required]');
@@ -402,10 +406,10 @@ window.handleFormSubmit = async function(event) {
   // Custom Phone Validation (Strict Country Code)
   const phone = form.querySelector('#cf-phone');
   if (phone && phone.value.trim().length > 0) {
-      if (!/^\+[0-9]{8,15}$/.test(phone.value.trim().replace(/\s/g, ''))) {
-          phone.closest('.form-group').classList.add('has-error');
-          isValid = false;
-      }
+    if (!/^\+[0-9]{8,15}$/.test(phone.value.trim().replace(/\s/g, ''))) {
+      phone.closest('.form-group').classList.add('has-error');
+      isValid = false;
+    }
   }
 
   // GDPR Consent Validation
@@ -444,12 +448,12 @@ window.handleFormSubmit = async function(event) {
       status.style.color = '#ef4444';
       status.style.display = 'block';
     }
-  } catch(error) {
+  } catch (error) {
     status.innerHTML = t('form_error_network');
     status.style.color = '#ef4444';
     status.style.display = 'block';
   }
-  
+
   btn.innerHTML = originalBtnText;
   btn.style.opacity = '1';
   btn.disabled = false;
@@ -635,9 +639,12 @@ function renderHome() {
         <canvas id="hero-canvas"></canvas>
       </div>
       <div class="hero-content">
-        <h1 data-animate>
-          SĂNĂTATE ȘI CALITATE<br>
-          ÎN FIECARE <span class="hero-accent">BIDON</span>
+        <h1 data-animate style="display: inline-flex; align-items: center; justify-content: center; text-align: left; gap: 0.2em;">
+          ${t('hero_prefix') ? `<span style="font-size: 1.65em; line-height: 1; letter-spacing: -0.04em; font-weight: 700; background: linear-gradient(to bottom, #111 20%, var(--aqua, #2cb1e1) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;">${t('hero_prefix')}</span>` : ''}
+          <div style="display: flex; flex-direction: column; background: linear-gradient(to bottom right, #111 10%, var(--aqua, #2cb1e1) 90%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <span style="white-space: nowrap;">${t('hero_main_1')}</span>
+            <span style="white-space: nowrap;">${t('hero_main_2')}</span>
+          </div>
         </h1>
         <p class="hero-sub" data-animate style="transition-delay: 0.1s">${t('hero_sub')}</p>
         <div class="hero-btns" data-animate style="transition-delay: 0.2s">
@@ -752,35 +759,12 @@ function renderHome() {
 
     ${waveDivider}
 
-    <section class="section section-padding">
-      <div class="container highlight-inner">
-          <h2 class="section-title text-center" data-animate>${t('highlights_title')}</h2>
-          <p class="section-subtitle center-text" data-animate>${t('highlights_sub')}</p>
-          <div class="highlights-grid stagger-items">
-            <div class="highlight-card" data-animate style="--item-index: 1">
-                <div class="highlight-icon">🏭</div>
-                <h3>${t('h1_title')}</h3>
-                <p>${t('h1_text')}</p>
-            </div>
-            <div class="highlight-card" data-animate style="--item-index: 2">
-                <div class="highlight-icon">📦</div>
-                <h3>${t('h2_title')}</h3>
-                <p>${t('h2_text')}</p>
-            </div>
-            <div class="highlight-card" data-animate style="--item-index: 3">
-                <div class="highlight-icon">🚚</div>
-                <h3>${t('h3_title')}</h3>
-                <p>${t('h3_text')}</p>
-            </div>
-          </div>
-      </div>
-    </section>
 
     <!-- NEW TRITAN HIGHLIGHT SECTION -->
     <section class="section section-padding tritan-highlight-wrap" style="background: linear-gradient(135deg, #0A192F, #112240); color: #fff;">
       <div class="container">
           <div class="text-center" style="margin-bottom: 60px;">
-              <span class="badge-b2b" style="display: block; margin: 0 auto 16px; width: fit-content; background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2);">Tritan™ Premium</span>
+              <span class="badge-b2b" style="display: block; margin: 0 auto 16px; width: fit-content; background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2);">Tritan™ ${t('badge_top_choice')}</span>
               <h2 class="section-title" data-animate style="color: #fff;">${t('tritan_highlight_title')}</h2>
               <p class="section-subtitle center-text" data-animate style="color: rgba(255,255,255,0.7); max-width: 800px; margin: 0 auto;">${t('tritan_highlight_sub')}</p>
           </div>
@@ -815,17 +799,15 @@ function renderHome() {
           <p class="section-subtitle center-text" data-animate>${t('products_sub')}</p>
           <div class="products-grid stagger-items">
             <a href="#" onclick="openProductModal('bottle-tritan'); return false;" class="product-card" data-animate style="--item-index: 1">
-              <span class="badge-b2b" style="background:#000; color:#fff; border-color:#333;">Premium</span>
+              <span class="badge-b2b" style="background:#000; color:#fff; border-color:#333;">${t('badge_top_choice')}</span>
               <div class="product-img"><img src="${IMAGES_HOLDER[0]}" alt="bidon Tritan 19L" loading="lazy"></div>
               <div class="product-info"><h3>${t('prod_tritan_name')}</h3><p>${t('bottle_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
             <a href="#" onclick="openProductModal('bottle-polycarbonate'); return false;" class="product-card" data-animate style="--item-index: 2">
-              <span class="badge-b2b">B2B Only</span>
               <div class="product-img"><img src="${IMAGES_STRAIGHT[0]}" alt="bidon PC 19L" loading="lazy"></div>
               <div class="product-info"><h3>${t('prod_pc_name')}</h3><p>${t('bottle_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
             <a href="#" onclick="openProductModal('capac-bidon'); return false;" class="product-card" data-animate style="--item-index: 3">
-              <span class="badge-b2b">B2B Only</span>
               <div class="product-img"><img src="img/products/cap/1.webp" alt="capac bidon" loading="lazy"></div>
               <div class="product-info"><h3>${t('cap_name')}</h3><p>${t('cap_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
@@ -852,6 +834,24 @@ function renderHome() {
       <div class="container text-center">
         <h2 class="section-title" data-animate>${t('factory_title')}</h2>
         <p class="section-subtitle center-text" data-animate style="max-width: 600px; margin: 0 auto 40px auto;">${t('factory_desc')}</p>
+        <div class="highlights-grid stagger-items" style="margin-bottom: 60px;">
+            <div class="highlight-card" data-animate style="--item-index: 1">
+                <div class="highlight-icon">🏭</div>
+                <h3>${t('h1_title')}</h3>
+                <p>${t('h1_text')}</p>
+            </div>
+            <div class="highlight-card" data-animate style="--item-index: 2">
+                <div class="highlight-icon">📦</div>
+                <h3>${t('h2_title')}</h3>
+                <p>${t('h2_text')}</p>
+            </div>
+            <div class="highlight-card" data-animate style="--item-index: 3">
+                <div class="highlight-icon">🚚</div>
+                <h3>${t('h3_title')}</h3>
+                <p>${t('h3_text')}</p>
+            </div>
+        </div>
+
         <div class="products-grid stagger-items" style="gap: 20px;">
            <div class="product-img" data-animate style="--item-index: 1; border-radius: 16px; height: 400px; overflow: hidden; border: 1px solid var(--border-color);">
              <img src="img/products/makina/Contec18.jpg" alt="Contec Manufacturing Machine" style="width: 100%; height: 100%; object-fit: cover;">
@@ -926,17 +926,15 @@ function renderProducts() {
           <p class="section-subtitle" data-animate>${t('products_page_sub')}</p>
           <div class="products-grid stagger-items">
             <a href="#" onclick="openProductModal('bottle-tritan'); return false;" class="product-card" data-animate style="--item-index: 1">
-              <span class="badge-b2b" style="background:#000; color:#fff; border-color:#333;">Premium</span>
+              <span class="badge-b2b" style="background:#000; color:#fff; border-color:#333;">${t('badge_top_choice')}</span>
               <div class="product-img"><img src="${IMAGES_HOLDER[0]}" alt="bidon Tritan 19L" loading="lazy"></div>
               <div class="product-info"><h3>${t('prod_tritan_name')}</h3><p>${t('bottle_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
             <a href="#" onclick="openProductModal('bottle-polycarbonate'); return false;" class="product-card" data-animate style="--item-index: 2">
-              <span class="badge-b2b">B2B Only</span>
               <div class="product-img"><img src="${IMAGES_STRAIGHT[0]}" alt="bidon PC 19L" loading="lazy"></div>
               <div class="product-info"><h3>${t('prod_pc_name')}</h3><p>${t('bottle_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
             <a href="#" onclick="openProductModal('capac-bidon'); return false;" class="product-card" data-animate style="--item-index: 3">
-              <span class="badge-b2b">B2B Only</span>
               <div class="product-img"><img src="img/products/cap/1.webp" alt="capac bidon" loading="lazy"></div>
               <div class="product-info"><h3>${t('cap_name')}</h3><p>${t('cap_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
@@ -977,10 +975,10 @@ function renderProductDetail(slug) {
       schema: { "@context": "https://schema.org", "@type": "Product", "name": "19L Polycarbonate Bottle", "brand": { "@type": "Brand", "name": "ContecPark" } }
     },
     'capac-bidon': {
-      name: 'cap_name', desc: 'cap_desc', type: 'cap', 
+      name: 'cap_name', desc: 'cap_desc', type: 'cap',
       images: [
         'img/products/cap/1.webp'
-      ], 
+      ],
       imgAlt: 'capac bidon', dim: 'cap_dim', mat: 'cap_mat', wt: 'cap_weight', col: 'cap_colors', moq: 'cap_moq', pkg: 'cap_pkg', uses: 'cap_uses', faqs: 'cap_faqs',
       availableColors: [
         { name: 'Classic Blue', hex: '#002B7F' },
@@ -995,7 +993,7 @@ function renderProductDetail(slug) {
   };
   const p = products[slug];
   if (!p) return renderProducts();
-  
+
   const currentImages = p.type === 'bottle' ? p.versions[activeBottleVersion] : p.images;
   const uses = t(p.uses);
   const faqs = t(p.faqs);
@@ -1004,7 +1002,7 @@ function renderProductDetail(slug) {
   if (!schemaBlock) { schemaBlock = document.createElement('script'); schemaBlock.type = 'application/ld+json'; schemaBlock.id = 'product-schema'; document.head.appendChild(schemaBlock); }
   const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })) };
   schemaBlock.textContent = JSON.stringify([p.schema, faqSchema]);
-  
+
   return `
     <div class="container product-detail section-padding" style="padding-top:160px">
       <div class="product-detail-header" data-animate>
@@ -1014,7 +1012,7 @@ function renderProductDetail(slug) {
       <div class="product-detail-img" id="product-viewer-box" data-animate>
         <div class="main-img-container" id="main-img-container">
           ${currentImages.map((img, i) => `
-            <img src="${img}" alt="${p.imgAlt} - ${i+1}" class="viewer-img ${i === 0 ? 'active' : ''}">
+            <img src="${img}" alt="${p.imgAlt} - ${i + 1}" class="viewer-img ${i === 0 ? 'active' : ''}">
           `).join('')}
           <div id="tint-overlay" class="product-tint-layer ${p.type === 'bottle' ? 'bottle-tint' : ''}"></div>
         </div>
@@ -1040,7 +1038,6 @@ function renderProductDetail(slug) {
                 <tr><th>${t('spec_mat')}</th><td>${t(p.mat)}</td></tr>
                 <tr><th>${t('spec_weight')}</th><td>${typeof p.wt === 'string' && p.wt.includes('g') ? p.wt : t(p.wt)}</td></tr>
                 <tr><th>${t('spec_color')}</th><td>${t(p.col)}</td></tr>
-                <tr><th>${t('spec_moq')}</th><td>${t(p.moq)}</td></tr>
                 <tr><th>${t('spec_pkg')}</th><td>${t(p.pkg)}</td></tr>
             </table>
 
@@ -1114,6 +1111,7 @@ function renderAbout() {
       <h1 data-animate>${t('about_title')}</h1>
       <p class="about-text" data-animate style="transition-delay:0.1s">${t('about_p1')}</p>
       <p class="about-text" data-animate style="transition-delay:0.2s">${t('about_p2')}</p>
+      <p class="about-text" data-animate style="transition-delay:0.3s">${t('about_p3')}</p>
       
       <h2 class="section-title" style="margin-top:60px" data-animate>${t('about_produce')}</h2>
       <div class="about-products-mini stagger-items">
@@ -1211,15 +1209,15 @@ function triggerPageTransitionBubbles() {
 
   // Romanian Flag colors: Blue (#002B7F), Yellow (#FCD116), Red (#CE1126)
   const colors = ['#002B7F', '#FCD116', '#CE1126'];
-  
-  for(let i = 0; i < 45; i++) {
+
+  for (let i = 0; i < 45; i++) {
     const bubble = document.createElement('div');
     bubble.className = 'transition-bubble';
     bubble.style.left = Math.random() * 100 + 'vw';
     bubble.style.backgroundColor = colors[i % 3];
     bubble.style.animationDuration = (Math.random() * 2 + 1.5) + 's'; // 1.5s to 3.5s
     bubble.style.animationDelay = (Math.random() * 0.5) + 's';
-    
+
     // Size variation
     const size = Math.random() * 25 + 10; // 10px to 35px
     bubble.style.width = size + 'px';
@@ -1228,7 +1226,7 @@ function triggerPageTransitionBubbles() {
     // Horizontal sway offset
     const sway = (Math.random() * 100 - 50) + 'px';
     bubble.style.setProperty('--sway-x', sway);
-    
+
     container.appendChild(bubble);
   }
 
@@ -1311,7 +1309,7 @@ function init360Viewer() {
       const pct = (idx / (imgs.length - 1)) * 100;
       dot.style.left = `${pct}%`;
     }
-    
+
     if (beneOverlay && beneTitle && beneDesc) {
       // Map img index (0-6) to text index (1-6)
       const textIdx = Math.min(idx, 5) + 1;
@@ -1319,7 +1317,7 @@ function init360Viewer() {
         beneOverlay.classList.remove('visible');
         setTimeout(() => {
           beneTitle.innerHTML = t('t360_title_' + textIdx);
-          beneDesc.innerHTML  = t('t360_desc_'  + textIdx);
+          beneDesc.innerHTML = t('t360_desc_' + textIdx);
           beneOverlay.classList.add('visible');
         }, 150);
         lastTextIdx = textIdx;
@@ -1348,12 +1346,12 @@ function init360Viewer() {
     if (!isDragging) return;
     const x = e.type === 'mousemove' ? e.pageX : e.touches[0].pageX;
     const diff = x - startX;
-    
+
     // Yüksek hassasiyetli gecikmesiz değişim
     if (Math.abs(diff) > 12) {
       if (diff > 0) currentIndex = (currentIndex + 1) % imgs.length;
       else currentIndex = (currentIndex - 1 + imgs.length) % imgs.length;
-      
+
       updateVisuals(currentIndex);
       startX = x;
     }
@@ -1376,8 +1374,8 @@ function init360Viewer() {
   // Initial tint sync if exists
   const tint = document.getElementById('tint-overlay');
   if (tint && imgs[0]) {
-      tint.style.webkitMaskImage = `url('${imgs[0].src}')`;
-      tint.style.maskImage = `url('${imgs[0].src}')`;
+    tint.style.webkitMaskImage = `url('${imgs[0].src}')`;
+    tint.style.maskImage = `url('${imgs[0].src}')`;
   }
 
   viewerCleanup = () => {
@@ -1391,28 +1389,28 @@ function init360Viewer() {
 }
 
 /* ===================== DYNAMIC COLOR TINTING ===================== */
-window.applyProductColor = function(el, hex) {
+window.applyProductColor = function (el, hex) {
   if (!el) return;
-  
+
   // Update UI state
   const container = el.closest('.color-options');
   if (container) {
     container.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
     el.classList.add('active');
   }
-  
+
   // Local Detail Page Tint
   const tint = document.getElementById('tint-overlay');
   const imgs = document.querySelectorAll('.viewer-img');
   const activeImg = document.querySelector('.viewer-img.active');
-  
+
   if (tint && activeImg) {
     tint.style.backgroundColor = hex;
     const isBottle = tint.classList.contains('bottle-tint');
     tint.style.opacity = (hex === 'transparent') ? '0' : (isBottle ? '0.65' : '0.85');
     tint.style.webkitMaskImage = `url('${activeImg.src}')`;
     tint.style.maskImage = `url('${activeImg.src}')`;
-    
+
     // Apply grayscale to base images to allow perfect tinting
     imgs.forEach(img => {
       img.style.filter = (hex === 'transparent') ? '' : 'grayscale(1) brightness(1.1)';
@@ -1432,7 +1430,7 @@ window.applyProductColor = function(el, hex) {
   }
 };
 
-window.switchBottleVersion = function(version) {
+window.switchBottleVersion = function (version) {
   activeBottleVersion = version;
   route();
 };
@@ -1469,7 +1467,7 @@ function initCookies() {
 document.getElementById('accept-cookies')?.addEventListener('click', () => {
   localStorage.setItem('contecpark_cookies_accepted', '1');
   const banner = document.getElementById('cookie-consent');
-  if(banner) {
+  if (banner) {
     banner.classList.remove('slide-up');
     setTimeout(() => banner.style.display = 'none', 500);
   }
@@ -1502,11 +1500,11 @@ function initCustomCursor() {
     const { clientX: x, clientY: y } = e;
     cursor.style.left = `${x}px`;
     cursor.style.top = `${y}px`;
-    
+
     // Smooth trailing ripple
     requestAnimationFrame(() => {
-        ripple.style.left = `${x}px`;
-        ripple.style.top = `${y}px`;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
     });
   });
 
@@ -1539,7 +1537,6 @@ function initProductModal() {
         { label: T[currentLang].spec_dim, value: T[currentLang].bottle_dim },
         { label: T[currentLang].spec_mat, value: 'Tritan™ (100% Virgin BPA-Free)' },
         { label: T[currentLang].spec_weight, value: '825 - 835 g' },
-        { label: T[currentLang].spec_moq, value: T[currentLang].bottle_moq },
         { label: T[currentLang].spec_pkg, value: T[currentLang].tritan_pkg }
       ]
     },
@@ -1553,7 +1550,6 @@ function initProductModal() {
         { label: T[currentLang].spec_dim, value: T[currentLang].bottle_dim },
         { label: T[currentLang].spec_mat, value: 'Policarbonat (100% Virgin)' },
         { label: T[currentLang].spec_weight, value: '750 - 760 g' },
-        { label: T[currentLang].spec_moq, value: T[currentLang].bottle_moq },
         { label: T[currentLang].spec_pkg, value: T[currentLang].tritan_pkg }
       ]
     },
@@ -1574,7 +1570,6 @@ function initProductModal() {
         { label: T[currentLang].spec_dim, value: T[currentLang].cap_dim },
         { label: T[currentLang].spec_mat, value: T[currentLang].cap_mat },
         { label: T[currentLang].spec_color, value: T[currentLang].cap_color || T[currentLang].cap_colors },
-        { label: T[currentLang].spec_moq, value: T[currentLang].cap_moq },
         { label: T[currentLang].spec_pkg, value: T[currentLang].cap_pkg }
       ]
     }
@@ -1591,7 +1586,7 @@ function initProductModal() {
   ];
   productData['bottle-polycarbonate'].availableColors = productData['bottle-tritan'].availableColors;
 
-  window.openProductModal = function(id) {
+  window.openProductModal = function (id) {
     const data = productData[id];
     if (!data) return;
 
@@ -1643,10 +1638,10 @@ function initProductModal() {
     `;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => { if(window.observeElements) window.observeElements(); }, 100);
+    setTimeout(() => { if (window.observeElements) window.observeElements(); }, 100);
   };
 
-  window.switchBottleVersionModal = function(id, version) {
+  window.switchBottleVersionModal = function (id, version) {
     activeBottleVersion = version;
     openProductModal(id);
     // Also re-render background page if it's the products page
