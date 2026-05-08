@@ -857,7 +857,7 @@ function renderHome() {
              <img src="img/products/makina/Contec18.jpg" alt="Contec Manufacturing Machine" style="width: 100%; height: 100%; object-fit: cover;">
            </div>
            <div class="product-img" data-animate style="--item-index: 2; border-radius: 16px; height: 400px; overflow: hidden; border: 1px solid var(--border-color);">
-             <img src="img/products/makina/Contec43.jpg" alt="Contec Production Equipment" style="width: 100%; height: 100%; object-fit: cover;">
+             <img src="img/products/makina/Contec43.jpg?v=2" alt="Contec Production Equipment" style="width: 100%; height: 100%; object-fit: cover;">
            </div>
         </div>
       </div>
@@ -873,7 +873,7 @@ function renderHome() {
             <div data-animate style="--item-index: 1; padding: 24px 30px; background: var(--bg-secondary); border-radius: 16px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: transform 0.3s;">
                 <div style="display:flex; align-items:center; gap: 16px;">
                   <span style="font-weight:700; font-size: 1.5rem; color: var(--primary);">2023</span>
-                  <span style="font-size: 1.2rem; font-weight:500;">Milano</span>
+                  <span style="font-size: 1.2rem; font-weight:500;">Vienna</span>
                 </div>
                 <span class="badge-b2b" style="margin:0;">Italy</span>
             </div>
