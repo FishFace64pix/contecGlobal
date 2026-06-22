@@ -14,7 +14,7 @@ const T = {
     prod_cap: 'Capac 55mm Multicolor', prod_cap_desc: 'Capace etanșe disponibile într-o gamă largă de culori. Siguranță maximă și compatibilitate universală pentru bidoane 19L.',
     details_link: 'Detalii Tehnice →',
     prod_tritan_name: 'Bidon 19L Tritan (BPA-Free)', prod_pc_name: 'Bidon 19L Policarbonat',
-    version_holder: 'Cu Mâner', version_straight: 'Clasic',
+    version_holder: 'Cu Mâner', version_straight: 'Fără Mâner',
     drag_hint: 'Trageți pentru a roti 360°',
     tech_quality_title: 'Tehnic & Calitate',
     tech_mat: 'Material', tech_trace: 'Trasabilitate', tech_cert: 'Certificare',
@@ -39,8 +39,10 @@ const T = {
     badge_text: 'Fabricat în România',
     bottle_desc: 'Bidonul nostru de apă de 19 litri asigură durabilitate excepțională, rezistență la impact și transparență perfectă. Ideal pentru distribuitori.',
     cap_name: 'Capac Bidon 19L', cap_desc: 'Capacul bidon 19L oferă o etanșare sigură și ermetică. Fabricat din material de înaltă calitate, asigură protecție optimă.',
-    spec_dim: 'Dimensiuni', spec_mat: 'Material', spec_weight: 'Greutate', spec_color: 'Culoare', spec_moq: 'Cantitate minimă', spec_pkg: 'Ambalare',
-    bottle_dim: 'Ø 271 × 490 mm', bottle_weight: '750 - 835 g', bottle_moq: '100 bucăți',
+    spec_dim: 'Dimensiuni', spec_mat: 'Material', spec_weight: 'Greutate', spec_color: 'Culoare', spec_moq: 'Cantitate minimă', spec_pkg: 'Ambalare', spec_capacity: 'Capacitate',
+    bottle_dim: 'Ø 271 × 490 mm', bottle_weight: '750 - 835 g', bottle_moq: '100 bucăți', bottle_capacity: '19 L / 5 Galoane',
+    tritan_weight: 'Cu Mâner: 825 g (±5 g) | Fără Mâner: 750 g (±5 g)',
+    pc_weight: 'Cu Mâner: 835 g (±5 g) | Fără Mâner: 760 g (±5 g)',
     tritan_pkg: '1 cutie = 8 unități. Fiecare bidon este ambalat individual. (Comandă minimă: 100 bucăți)',
     tritan_color: 'Transparent / Albastru (Disponibilitatea poate varia)',
     cap_pkg: '1 cutie = 600 unități. (Comandă minimă: 1 cutie)', cap_colors: 'Toate culorile disponibile',
@@ -129,7 +131,7 @@ const T = {
     prod_cap: '19L Bottle Cap with Seal', prod_cap_desc: 'Leak-proof 19L water bottle caps with safety seals. Compatible with all standard polycarbonate carboys and dispensers.',
     details_link: 'Details →',
     prod_tritan_name: '19L Tritan Water Bottle (BPA-Free)', prod_pc_name: '19L Polycarbonate Bottle',
-    version_holder: 'With Handle', version_straight: 'Classic',
+    version_holder: 'With Handle', version_straight: 'Without Handle',
     drag_hint: 'Drag to rotate 360°',
     tech_quality_title: 'Technical & Quality',
     tech_mat: 'Material', tech_trace: 'Traceability', tech_cert: 'Certification',
@@ -151,9 +153,11 @@ const T = {
     products_page_title: 'Premium Products', products_page_sub: 'Discover the full range of Tritan and Polycarbonate 19L water bottles, exclusive for B2B partners.',
     badge_text: 'Made in Romania',
     bottle_desc: 'Our 19 liter water bottle is manufactured to the highest quality standards. Ensures exceptional durability, impact resistance and perfect transparency. Ideal for water distributors.',
-    cap_name: '19L Bottle Cap', cap_desc: 'Provides a secure and hermetic seal for carboy bottles. Made from high-quality material, it ensures optimal protection and ease of use.',
-    spec_dim: 'Dimensions', spec_mat: 'Material', spec_weight: 'Weight', spec_color: 'Color', spec_moq: 'Min. Order Qty', spec_pkg: 'Packaging',
-    bottle_dim: 'Ø 271 × 490 mm', bottle_weight: '750 - 835 g', bottle_moq: '100 units',
+    cap_name: '19L Bottle Cap', cap_desc: 'Provides a secure and hermetic seal for bottles. Made to ensure optimal protection and ease of use.',
+    spec_dim: 'Dimensions', spec_mat: 'Material', spec_weight: 'Weight', spec_color: 'Color', spec_moq: 'Min. Order Qty', spec_pkg: 'Packaging', spec_capacity: 'Capacity',
+    bottle_dim: 'Ø 271 × 490 mm', bottle_weight: '750 - 835 g', bottle_moq: '100 units', bottle_capacity: '19 L / 5 Gallon',
+    tritan_weight: 'With Handle: 825 g (±5 g) | Without Handle: 750 g (±5 g)',
+    pc_weight: 'With Handle: 835 g (±5 g) | Without Handle: 760 g (±5 g)',
     tritan_pkg: '1 box = 8 units. Each bottle is individually packed. (Min. order: 100 units)',
     tritan_color: 'Transparent / Blue (Availability may vary)',
     cap_pkg: '1 box = 600 units. (Min. order: 1 box)', cap_colors: 'All colors available',
@@ -208,8 +212,8 @@ const T = {
     tritan_h4: 'Long-Term Value', tritan_t4: 'The slightly higher investment cost is recovered quickly: Tritan bottles withstand up to 50% more reuse cycles compared to its competitors (PET).',
     events_title: 'Events & Exhibitions',
     events_desc: 'Meet us at the largest B2B exhibitions in Europe:',
-    factory_title: 'Precision Manufacturing',
-    factory_desc: 'Advanced manufacturing technology and precision engineering power every step of our production — pushing the boundaries of container safety.',
+    factory_title: 'Advanced Manufacturing',
+    factory_desc: 'At the heart of our production stands the ASB 650 EXHD, one of the most advanced machines in the industry, which allows us to produce with greater efficiency and deliver products you can rely on.',
     t360_title_1: 'Health Safe', t360_desc_1: 'BPA-free ensures no harmful chemical release, making it top choice for infant care products.',
     t360_title_2: 'High impact resistance', t360_desc_2: 'It absorbs shocks instead of cracking or breaking',
     t360_title_3: 'High durability', t360_desc_3: 'Designed for repeated professional use.',
@@ -957,7 +961,7 @@ function renderProductDetail(slug) {
     'bottle-tritan': {
       name: 'prod_tritan_name', desc: 'bottle_desc', type: 'bottle',
       versions: { 'holder': IMAGES_HOLDER, 'straight': IMAGES_STRAIGHT },
-      imgAlt: 'bidon Tritan 19L', dim: 'bottle_dim', mat: 'Tritan™ (100% Virgin BPA-Free)', wt: '825 - 835 g', col: 'tritan_color', moq: 'bottle_moq', pkg: 'tritan_pkg', uses: 'bottle_uses', faqs: 'bottle_faqs',
+      imgAlt: 'bidon Tritan 19L', dim: 'bottle_dim', mat: 'Tritan™ (100% Virgin BPA-Free)', wt: 'tritan_weight', cap: 'bottle_capacity', col: 'tritan_color', moq: 'bottle_moq', pkg: 'tritan_pkg', uses: 'bottle_uses', faqs: 'bottle_faqs',
       availableColors: [
         { name: 'Crystal Clear', hex: 'transparent' },
         { name: 'Pure Blue', hex: '#0071E3' },
@@ -971,7 +975,7 @@ function renderProductDetail(slug) {
     'bottle-polycarbonate': {
       name: 'prod_pc_name', desc: 'bottle_desc', type: 'bottle',
       versions: { 'holder': IMAGES_HOLDER, 'straight': IMAGES_STRAIGHT },
-      imgAlt: 'bidon Policarbonat 19L', dim: 'bottle_dim', mat: 'Policarbonat (100% Virgin)', wt: '750 - 760 g', col: 'bottle_color', moq: 'bottle_moq', pkg: 'tritan_pkg', uses: 'bottle_uses', faqs: 'bottle_faqs',
+      imgAlt: 'bidon Policarbonat 19L', dim: 'bottle_dim', mat: 'Policarbonat (100% Virgin)', wt: 'pc_weight', cap: 'bottle_capacity', col: 'bottle_color', moq: 'bottle_moq', pkg: 'tritan_pkg', uses: 'bottle_uses', faqs: 'bottle_faqs',
       schema: { "@context": "https://schema.org", "@type": "Product", "name": "19L Polycarbonate Bottle", "brand": { "@type": "Brand", "name": "ContecPark" } }
     },
     'capac-bidon': {
@@ -1035,8 +1039,9 @@ function renderProductDetail(slug) {
             <p class="product-detail-desc">${t(p.desc)}</p>
             <table class="specs-table">
                 <tr><th>${t('spec_dim')}</th><td>${t(p.dim)}</td></tr>
+                ${p.cap ? `<tr><th>${t('spec_capacity')}</th><td>${t(p.cap)}</td></tr>` : ''}
                 <tr><th>${t('spec_mat')}</th><td>${t(p.mat)}</td></tr>
-                <tr><th>${t('spec_weight')}</th><td>${typeof p.wt === 'string' && p.wt.includes('g') ? p.wt : t(p.wt)}</td></tr>
+                <tr><th>${t('spec_weight')}</th><td>${t(p.wt)}</td></tr>
                 <tr><th>${t('spec_color')}</th><td>${t(p.col)}</td></tr>
                 <tr><th>${t('spec_pkg')}</th><td>${t(p.pkg)}</td></tr>
             </table>
@@ -1540,8 +1545,9 @@ function initProductModal() {
       type: 'bottle',
       specs: [
         { label: T[currentLang].spec_dim, value: T[currentLang].bottle_dim },
+        { label: T[currentLang].spec_capacity, value: T[currentLang].bottle_capacity },
         { label: T[currentLang].spec_mat, value: 'Tritan™ (100% Virgin BPA-Free)' },
-        { label: T[currentLang].spec_weight, value: '825 - 835 g' },
+        { label: T[currentLang].spec_weight, value: T[currentLang].tritan_weight },
         { label: T[currentLang].spec_pkg, value: T[currentLang].tritan_pkg }
       ]
     },
@@ -1553,8 +1559,9 @@ function initProductModal() {
       type: 'bottle',
       specs: [
         { label: T[currentLang].spec_dim, value: T[currentLang].bottle_dim },
+        { label: T[currentLang].spec_capacity, value: T[currentLang].bottle_capacity },
         { label: T[currentLang].spec_mat, value: 'Policarbonat (100% Virgin)' },
-        { label: T[currentLang].spec_weight, value: '750 - 760 g' },
+        { label: T[currentLang].spec_weight, value: T[currentLang].pc_weight },
         { label: T[currentLang].spec_pkg, value: T[currentLang].tritan_pkg }
       ]
     },
