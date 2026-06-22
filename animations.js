@@ -111,7 +111,8 @@
         let sectionTop    = 0;
         let sectionHeight = 0;
         function cacheLayout() {
-            sectionTop    = pinSection.offsetTop;
+            const rect = pinSection.getBoundingClientRect();
+            sectionTop    = rect.top + window.scrollY;
             sectionHeight = pinSection.offsetHeight;
         }
         cacheLayout();

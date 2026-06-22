@@ -747,6 +747,15 @@ button {
     justify-content: flex-start;
 }
 
+.product-card > .badge-b2b:first-child {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    white-space: nowrap;
+}
+
 .product-card::after, .product-card::before {
     content: '';
     position: absolute;
@@ -794,10 +803,15 @@ button {
 }
 
 .product-img img {
-    max-height: 100%;
-    max-width: 100%;
+    height: 200px;
+    width: 200px;
     object-fit: contain;
     transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.product-img img.tritan-card-img {
+    height: 250px;
+    width: 250px;
 }
 
 .product-card:hover .product-img img {

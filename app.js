@@ -26,11 +26,11 @@ const T = {
     cap_tech_trace_val: 'Sigiliu de inviolabilitate color, confirmare vizuală.',
     cap_tech_cert_val: 'Food-Contact Approved, sigur pentru apă potabilă.',
     why_title: 'Standardul Contec',
-    why_quote: '"Misiunea noastră este să oferim ambalaje care protejează puritatea apei. Baby Safe - Adult Safe nu este doar un slogan, ci standardul nostru de producție."',
-    wp1_title: 'Transparență', wp1_text: 'Claritate ridicată pentru monitorizarea nivelului apei.',
-    wp2_title: 'Fără Odor / Gust', wp2_text: 'Material inert care nu reține mirosuri sau pete.',
-    wp3_title: 'Hot-Fill Ready', wp3_text: 'Rezistență la temperaturi înalte și cicluri de spălare.',
-    wp4_title: 'Made in Romania', wp4_text: 'Producție locală certificată, livrare rapidă în toată țara.',
+    why_quote: '"Cu ani de experiență și tehnologie de ultimă generație, ContecPark este partenerul tău de încredere în producția de bidoane — dedicat găsirii de soluții care să răspundă nevoilor afacerii tale."',
+    wp1_title: 'Experiență', wp1_text: 'Ani de experiență în industrie.',
+    wp2_title: 'Certificări', wp2_text: 'Produse certificate conform celor mai noi standarde europene.',
+    wp3_title: 'B2B', wp3_text: 'Partener de încredere pentru companiile de îmbuteliere și distribuitorii de apă.',
+    wp4_title: 'Producție Locală', wp4_text: '%100 Fabricat în România, producător B2B de încredere.',
     gallery_title: 'Producție și Calitate', gallery_sub: 'Vezi cum fabricăm bidoanele și capacele noastre în unitatea din România.',
     badge_top_choice: 'Alegerea #1',
     // Products Page
@@ -93,7 +93,7 @@ const T = {
     events_title: 'Evenimente și Expoziții',
     events_desc: 'Suntem onorați să fim prezenți pe scena celor mai mari evenimente din Europa:',
     factory_title: 'Producție de Precizie',
-    factory_desc: 'Fabrica este susținută de mașina ASB 650 EXHD și echipamente de ultimă generație, garantând cel mai sigur ambalaj.',
+    factory_desc: 'Tehnologie de fabricație avansată și inginerie de precizie susțin fiecare etapă a producției noastre — împingând limitele siguranței ambalajelor.',
     t360_title_1: 'Siguranță Necompromisă', t360_desc_1: 'BPA-Free, nu eliberează substanțe chimice în apă.',
     t360_title_2: 'Durabilitate Superioară', t360_desc_2: 'Mai rezistent la spargere față de plasticul clasic.',
     t360_title_3: 'Durată Lungă de Viață', t360_desc_3: 'Își menține forma în timp, reducând dramatic costurile de înlocuire.',
@@ -141,11 +141,11 @@ const T = {
     cap_tech_trace_val: 'Color tamper-evident seal ring, visual confirmation.',
     cap_tech_cert_val: 'Food-Contact Approved, safe for drinking water.',
     why_title: 'Why Choose ContecPark',
-    why_quote: '"We are dedicated to excellence in 19L polycarbonate bottle manufacturing. With vast experience and cutting-edge technology, ContecPark is the trusted partner for your business."',
-    wp1_title: 'Experience', wp1_text: 'Years of experience in the water bottle industry.',
-    wp2_title: 'Certifications', wp2_text: 'Products certified to European standards.',
-    wp3_title: 'B2B', wp3_text: 'Trusted partner for companies and distributors.',
-    wp4_title: 'Local Production', wp4_text: 'Made in Romania, trusted B2B bottle manufacturer.',
+    why_quote: '"With years of experience and cutting-edge technology, ContecPark is your trusted partner in bottle manufacturing — dedicated to finding solutions that meet your business needs."',
+    wp1_title: 'Experience', wp1_text: 'Years of experience in the industry.',
+    wp2_title: 'Certifications', wp2_text: 'Products certified to meet newest European standards.',
+    wp3_title: 'B2B', wp3_text: 'Trusted partner for bottling companies and distributors.',
+    wp4_title: 'Local Production', wp4_text: '%100 Made in Romania, trusted B2B bottle manufacturer.',
     gallery_title: 'Gallery', gallery_sub: 'Images from our factory and production process.',
     badge_top_choice: 'Top Choice',
     products_page_title: 'Premium Products', products_page_sub: 'Discover the full range of Tritan and Polycarbonate 19L water bottles, exclusive for B2B partners.',
@@ -209,7 +209,7 @@ const T = {
     events_title: 'Events & Exhibitions',
     events_desc: 'Meet us at the largest B2B exhibitions in Europe:',
     factory_title: 'Precision Manufacturing',
-    factory_desc: 'Our factory is powered by the ASB 650 EXHD machine and cutting-edge equipment, pushing the boundaries of container safety.',
+    factory_desc: 'Advanced manufacturing technology and precision engineering power every step of our production — pushing the boundaries of container safety.',
     t360_title_1: 'Health Safe', t360_desc_1: 'BPA-free ensures no harmful chemical release, making it top choice for infant care products.',
     t360_title_2: 'High impact resistance', t360_desc_2: 'It absorbs shocks instead of cracking or breaking',
     t360_title_3: 'High durability', t360_desc_3: 'Designed for repeated professional use.',
@@ -708,8 +708,8 @@ function renderHome() {
             <img src="img/products/handle-v2/Pozitie 2.webp" class="seq-img" aria-hidden="true" loading="lazy" decoding="async">
             <img src="img/products/handle-v2/Pozitia 3.webp" class="seq-img" aria-hidden="true" loading="lazy" decoding="async">
             <img src="img/products/handle-v2/Pozitia 4.webp" class="seq-img" aria-hidden="true" loading="lazy" decoding="async">
-            <img src="img/products/handle-v2/Pozitia 5.webp" class="seq-img" aria-hidden="true" loading="lazy" decoding="async">
-            <img src="img/products/handle-v2/Pozitia 6.webp" class="seq-img" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="img/products/handle-v2/Pozitie 1.webp" class="seq-img" aria-hidden="true" loading="lazy" decoding="async">
+            <img src="img/products/handle-v2/Pozitie 2.webp" class="seq-img" aria-hidden="true" loading="lazy" decoding="async">
           </div>
           <!-- Active benefit pill (updated by scroll) -->
           <div class="bottle-3d-text">
@@ -800,7 +800,7 @@ function renderHome() {
           <div class="products-grid stagger-items">
             <a href="#" onclick="openProductModal('bottle-tritan'); return false;" class="product-card" data-animate style="--item-index: 1">
               <span class="badge-b2b" style="background:#000; color:#fff; border-color:#333;">${t('badge_top_choice')}</span>
-              <div class="product-img"><img src="${IMAGES_HOLDER[0]}" alt="bidon Tritan 19L" loading="lazy"></div>
+              <div class="product-img"><img src="${IMAGES_HOLDER[0]}" alt="bidon Tritan 19L" loading="lazy" class="tritan-card-img"></div>
               <div class="product-info"><h3>${t('prod_tritan_name')}</h3><p>${t('bottle_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
             <a href="#" onclick="openProductModal('bottle-polycarbonate'); return false;" class="product-card" data-animate style="--item-index: 2">
@@ -927,7 +927,7 @@ function renderProducts() {
           <div class="products-grid stagger-items">
             <a href="#" onclick="openProductModal('bottle-tritan'); return false;" class="product-card" data-animate style="--item-index: 1">
               <span class="badge-b2b" style="background:#000; color:#fff; border-color:#333;">${t('badge_top_choice')}</span>
-              <div class="product-img"><img src="${IMAGES_HOLDER[0]}" alt="bidon Tritan 19L" loading="lazy"></div>
+              <div class="product-img"><img src="${IMAGES_HOLDER[0]}" alt="bidon Tritan 19L" loading="lazy" class="tritan-card-img"></div>
               <div class="product-info"><h3>${t('prod_tritan_name')}</h3><p>${t('bottle_desc')}</p><span class="product-link">${t('details_link')}</span></div>
             </a>
             <a href="#" onclick="openProductModal('bottle-polycarbonate'); return false;" class="product-card" data-animate style="--item-index: 2">
@@ -1108,6 +1108,10 @@ function renderProductDetail(slug) {
 function renderAbout() {
   return `
     <div class="container about-page section-padding" style="padding-top:160px">
+      <div style="text-align: center; margin-bottom: 24px;" data-animate>
+        <p style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; max-width: 100%; text-align: center;">Member of</p>
+        <img src="img/weLogo.png" alt="Watercoolers Europe" style="width: 260px; height: auto; opacity: 0.9; display: inline-block;">
+      </div>
       <h1 data-animate>${t('about_title')}</h1>
       <p class="about-text" data-animate style="transition-delay:0.1s">${t('about_p1')}</p>
       <p class="about-text" data-animate style="transition-delay:0.2s">${t('about_p2')}</p>
@@ -1154,8 +1158,9 @@ function renderAbout() {
             <p style="margin-bottom:15px; line-height: 1.4;"><strong>Office:</strong><br>Bulevardul Pipera 1/VI, Voluntari (Hyperion Towers)</p>
             <p><a href="tel:+40750456525">+40 750 456 525</a></p>
             <p><a href="mailto:info@contecpark.com">info@contecpark.com</a></p>
-            <div class="map-placeholder" style="margin-top: 30px;">
-                <div style="text-align:center"><div class="map-icon">🗺️</div><span>${t('about_map_label')}</span></div>
+            <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border-subtle);">
+                <p style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.08em;">Member of</p>
+                <img src="img/weLogo.png" alt="Watercoolers Europe" style="height: 44px; width: auto; opacity: 0.85; filter: grayscale(0.1);">
             </div>
         </div>
         <div class="contact-form" id="contact-form" data-animate style="transition-delay: 0.1s">
