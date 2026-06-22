@@ -30,7 +30,7 @@ const T = {
     wp1_title: 'Experiență', wp1_text: 'Ani de experiență în industrie.',
     wp2_title: 'Certificări', wp2_text: 'Produse certificate conform celor mai noi standarde europene.',
     wp3_title: 'B2B', wp3_text: 'Partener de încredere pentru companiile de îmbuteliere și distribuitorii de apă.',
-    wp4_title: 'Producție Locală', wp4_text: '%100 Fabricat în România, producător B2B de încredere.',
+    wp4_title: 'Producție Locală', wp4_text: '%100 Fabricat în România.',
     gallery_title: 'Producție și Calitate', gallery_sub: 'Vezi cum fabricăm bidoanele și capacele noastre în unitatea din România.',
     badge_top_choice: 'Alegerea #1',
     // Products Page
@@ -145,7 +145,7 @@ const T = {
     wp1_title: 'Experience', wp1_text: 'Years of experience in the industry.',
     wp2_title: 'Certifications', wp2_text: 'Products certified to meet newest European standards.',
     wp3_title: 'B2B', wp3_text: 'Trusted partner for bottling companies and distributors.',
-    wp4_title: 'Local Production', wp4_text: '%100 Made in Romania, trusted B2B bottle manufacturer.',
+    wp4_title: 'Local Production', wp4_text: '%100 Made in Romania.',
     gallery_title: 'Gallery', gallery_sub: 'Images from our factory and production process.',
     badge_top_choice: 'Top Choice',
     products_page_title: 'Premium Products', products_page_sub: 'Discover the full range of Tritan and Polycarbonate 19L water bottles, exclusive for B2B partners.',
