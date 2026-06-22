@@ -212,7 +212,7 @@ const T = {
     tritan_h4: 'Long-Term Value', tritan_t4: 'The slightly higher investment cost is recovered quickly: Tritan bottles withstand up to 50% more reuse cycles compared to its competitors (PET).',
     events_title: 'Events & Exhibitions',
     events_desc: 'Meet us at the largest B2B exhibitions in Europe:',
-    factory_title: 'Advanced Manufacturing',
+    factory_title: 'Advanced Manufacturing Technology',
     factory_desc: 'At the heart of our production stands the ASB 650 EXHD, one of the most advanced machines in the industry, which allows us to produce with greater efficiency and deliver products you can rely on.',
     t360_title_1: 'Health Safe', t360_desc_1: 'BPA-free ensures no harmful chemical release, making it top choice for infant care products.',
     t360_title_2: 'High impact resistance', t360_desc_2: 'It absorbs shocks instead of cracking or breaking',
