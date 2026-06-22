@@ -1539,11 +1539,11 @@ function initProductModal() {
       versions: { 'holder': IMAGES_HOLDER[0], 'straight': IMAGES_STRAIGHT[0] },
       desc: T[currentLang].bottle_desc,
       type: 'bottle',
+      wtHolder: '825 g (±5 g)', wtStraight: '750 g (±5 g)',
       specs: [
         { label: T[currentLang].spec_dim, value: T[currentLang].bottle_dim },
         { label: T[currentLang].spec_capacity, value: T[currentLang].bottle_capacity },
         { label: T[currentLang].spec_mat, value: 'Tritan™ (100% Virgin BPA-Free)' },
-        { label: T[currentLang].spec_weight, value: activeBottleVersion === 'holder' ? '825 g (±5 g)' : '750 g (±5 g)' },
         { label: T[currentLang].spec_pkg, value: T[currentLang].tritan_pkg }
       ]
     },
@@ -1553,11 +1553,11 @@ function initProductModal() {
       versions: { 'holder': IMAGES_HOLDER[0], 'straight': IMAGES_STRAIGHT[0] },
       desc: T[currentLang].bottle_desc,
       type: 'bottle',
+      wtHolder: '835 g (±5 g)', wtStraight: '760 g (±5 g)',
       specs: [
         { label: T[currentLang].spec_dim, value: T[currentLang].bottle_dim },
         { label: T[currentLang].spec_capacity, value: T[currentLang].bottle_capacity },
         { label: T[currentLang].spec_mat, value: 'Policarbonat (100% Virgin)' },
-        { label: T[currentLang].spec_weight, value: activeBottleVersion === 'holder' ? '835 g (±5 g)' : '760 g (±5 g)' },
         { label: T[currentLang].spec_pkg, value: T[currentLang].tritan_pkg }
       ]
     },
@@ -1634,7 +1634,11 @@ function initProductModal() {
           ` : ''}
 
           <div class="modal-tech-specs stagger-items" style="margin-top: 40px;">
-            ${data.specs.map((s, idx) => `
+            ${(data.wtHolder ? [
+              ...data.specs.slice(0, 2),
+              { label: T[currentLang].spec_weight, value: activeBottleVersion === 'holder' ? data.wtHolder : data.wtStraight },
+              ...data.specs.slice(2)
+            ] : data.specs).map((s, idx) => `
               <div class="tech-spec" data-animate style="--item-index: ${idx}">
                 <div class="label">${s.label}</div>
                 <div class="value">${s.value}</div>
