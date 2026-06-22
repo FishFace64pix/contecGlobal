@@ -1142,12 +1142,12 @@ function renderAbout() {
               <div class="journey-item" data-animate style="--item-index: 3">
                   <div class="ji-circle" style="width: 80px; height: 80px; background: var(--surface); border: 1px solid var(--border-subtle); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 20px;">🔍</div>
                   <h4 style="text-align: center;">Quality Control</h4>
-                  <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">Laser leak detection & visual purity inspection.</p>
+                  <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">Our system guarantees compliance with strict industry standards.</p>
               </div>
               <div class="journey-item" data-animate style="--item-index: 4">
                   <div class="ji-circle" style="width: 80px; height: 80px; background: var(--surface); border: 1px solid var(--border-subtle); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 20px;">🚛</div>
                   <h4 style="text-align: center;">Distribution</h4>
-                  <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">Optimized logistics for regional water distributors.</p>
+                  <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">Optimized packaging and logistic solutions for every customer.</p>
               </div>
           </div>
       </section>
