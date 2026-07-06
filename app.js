@@ -92,8 +92,8 @@ const T = {
     tritan_h4: 'Valoare Superioară', tritan_t4: 'Tritanul suportă cu mult mai multe reprize de spălare față de materialele convenționale, reducând masiv necesarul de reinlocuire a bidoanelor.',
     events_title: 'Evenimente și Expoziții',
     events_desc: 'Ne întâlnim la evenimente și expoziții din întreaga lume, unde ne prezentăm produsele, inovațiile și angajamentul față de excelență.',
-    factory_title: 'Producție de Precizie',
-    factory_desc: 'Tehnologie de fabricație avansată și inginerie de precizie susțin fiecare etapă a producției noastre — împingând limitele siguranței ambalajelor.',
+    factory_title: 'Tehnologie Avansată de Producție',
+    factory_desc: 'La baza producției noastre se află mașina ASB 650 EXHD, una dintre cele mai avansate din industrie, care ne permite să producem cu eficiență mai mare și să livrăm produse pe care vă puteți baza.',
     t360_title_1: 'Siguranță Necompromisă', t360_desc_1: 'BPA-Free, nu eliberează substanțe chimice în apă.',
     t360_title_2: 'Durabilitate Superioară', t360_desc_2: 'Mai rezistent la spargere față de plasticul clasic.',
     t360_title_3: 'Durată Lungă de Viață', t360_desc_3: 'Își menține forma în timp, reducând dramatic costurile de înlocuire.',
@@ -1111,7 +1111,7 @@ function renderAbout() {
     <div class="container about-page section-padding" style="padding-top:160px">
       <div style="text-align: center; margin-bottom: 24px;" data-animate>
         <p style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; max-width: 100%; text-align: center;">Member of</p>
-        <img src="img/weLogo.png" alt="Watercoolers Europe" style="width: 260px; height: auto; opacity: 0.9; display: inline-block;">
+        <img src="/img/weLogo.png" alt="Watercoolers Europe" style="width: 260px; height: auto; opacity: 0.9; display: inline-block;">
       </div>
       <h1 data-animate>${t('about_title')}</h1>
       <p class="about-text" data-animate style="transition-delay:0.1s">${t('about_p1')}</p>
@@ -1161,7 +1161,7 @@ function renderAbout() {
             <p><a href="mailto:info@contecpark.com">info@contecpark.com</a></p>
             <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border-subtle);">
                 <p style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.08em;">Member of</p>
-                <img src="img/weLogo.png" alt="Watercoolers Europe" style="height: 44px; width: auto; opacity: 0.85; filter: grayscale(0.1);">
+                <img src="/img/weLogo.png" alt="Watercoolers Europe" style="height: 44px; width: auto; opacity: 0.85; filter: grayscale(0.1);">
             </div>
         </div>
         <div class="contact-form" id="contact-form" data-animate style="transition-delay: 0.1s">
