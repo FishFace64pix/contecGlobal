@@ -555,8 +555,8 @@ button {
 
 /* Hero Slider */
 .hero-slider { overflow: hidden; }
-.hero-banner-slide { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 75%; max-width: 900px; z-index: 999; pointer-events: none; opacity: 0; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.25); animation: heroBannerCycle 10s ease-in-out 4s infinite; }
-.hero-banner-slide img { width: 100%; height: auto; display: block; }
+.hero-banner-slide { position: absolute; inset: 0; z-index: 10; pointer-events: none; opacity: 0; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; animation: heroBannerCycle 10s ease-in-out 4s infinite; }
+.hero-banner-slide img { width: 75%; max-width: 900px; height: auto; display: block; border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
 @keyframes heroBannerCycle {
   0%   { opacity: 0; }
   8%   { opacity: 1; }
