@@ -1282,33 +1282,13 @@ function route() {
     viewerCleanup = null;
   }
   // Post-render hooks
-  if (window._heroSliderCleanup) { window._heroSliderCleanup(); window._heroSliderCleanup = null; }
   requestAnimationFrame(() => {
-    if (hash === '/') { initParticles(document.getElementById('hero-canvas')); initHeroSlider(); }
+    if (hash === '/') { initParticles(document.getElementById('hero-canvas')); }
     if (window.observeElements) window.observeElements();
     initFAQs();
     initFormValidation();
     if (hash.startsWith('/products/')) init360Viewer();
   });
-}
-
-/* ===================== HERO SLIDER ===================== */
-function initHeroSlider() {
-  const banner = document.querySelector('.hero-banner-slide');
-  const dots   = Array.from(document.querySelectorAll('.hero-dot'));
-  if (!banner) return;
-
-  let showBanner = false;
-
-  window.goToSlide = function(n) {
-    showBanner = n === 1;
-    banner.classList.toggle('active', showBanner);
-    dots[0]?.classList.toggle('active', !showBanner);
-    dots[1]?.classList.toggle('active', showBanner);
-  };
-
-  const timer = setInterval(() => window.goToSlide(showBanner ? 0 : 1), 3000);
-  window._heroSliderCleanup = () => clearInterval(timer);
 }
 
 /* ===================== INTERACTIVE VIEWER (SEXY 360) ===================== */
