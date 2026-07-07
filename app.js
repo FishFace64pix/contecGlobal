@@ -1489,7 +1489,48 @@ window.addEventListener('DOMContentLoaded', () => {
   initCookies();
   initCustomCursor();
   initProductModal();
+  initEventPopup();
 });
+
+function initEventPopup() {
+  const popup = document.getElementById('event-popup');
+  if (!popup) return;
+
+  let shown = false;
+
+  function showPopup() {
+    if (popup.classList.contains('dismissed')) return;
+    shown = true;
+    popup.classList.add('visible');
+    popup.classList.remove('hero-hidden');
+  }
+
+  function hidePopup() {
+    if (popup.classList.contains('dismissed')) return;
+    popup.classList.add('hero-hidden');
+    popup.classList.remove('visible');
+  }
+
+  setTimeout(() => {
+    const hero = document.querySelector('.hero-intro-section');
+    if (!hero) return;
+    const rect = hero.getBoundingClientRect();
+    if (rect.bottom > 0) showPopup();
+  }, 3500);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (shown) showPopup();
+      } else {
+        hidePopup();
+      }
+    });
+  }, { threshold: 0 });
+
+  const hero = document.querySelector('.hero-intro-section');
+  if (hero) observer.observe(hero);
+}
 
 /* ===================== PREMIUM UPGRADES: CURSOR & MODAL ===================== */
 
