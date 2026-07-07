@@ -1307,7 +1307,7 @@ function initHeroSlider() {
     dots[1]?.classList.toggle('active', showBanner);
   };
 
-  const timer = setInterval(() => window.goToSlide(showBanner ? 0 : 1), 5000);
+  const timer = setInterval(() => window.goToSlide(showBanner ? 0 : 1), 3000);
   window._heroSliderCleanup = () => clearInterval(timer);
 }
 
