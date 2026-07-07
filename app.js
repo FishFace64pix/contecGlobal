@@ -625,8 +625,8 @@ function renderHome() {
   `;
 
   return `
-    <section class="hero hero-intro-section hero-slider">
-      <!-- Normal hero content (stays in flow, sets height) -->
+    <section class="hero hero-intro-section">
+      <!-- Hero content -->
       <div class="hero-intro-inner">
       <div class="parallax-water-container">
         <svg viewBox="0 0 1200 200" class="water-path-svg" style="width:200%; height:100%">
@@ -659,15 +659,6 @@ function renderHome() {
             <path d="M0,80 C200,130 400,30 600,80 C800,130 1000,30 1200,80 L1200,120 L0,120 Z" class="wave-path"></path>
         </svg>
       </div>
-      </div>
-      <!-- Banner overlay (position:absolute, fades over hero) -->
-      <div class="hero-banner-slide">
-        <img src="/img/webanner.jpeg" alt="ContecPark Banner">
-      </div>
-      <!-- Dots -->
-      <div class="hero-dots">
-        <button class="hero-dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
-        <button class="hero-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
       </div>
     </section>
 
