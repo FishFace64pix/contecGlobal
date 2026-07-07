@@ -626,44 +626,42 @@ function renderHome() {
 
   return `
     <section class="hero hero-intro-section hero-slider">
-      <!-- Slide 1: Hero Content -->
-      <div class="hero-slide active">
-        <div class="hero-intro-inner">
-        <div class="parallax-water-container">
-          <svg viewBox="0 0 1200 200" class="water-path-svg" style="width:200%; height:100%">
-              <path d="M0,100 C150,150 350,50 500,100 C650,150 850,50 1000,100 C1150,150 1350,50 1500,100" class="water-path"></path>
-              <path d="M0,120 C200,170 400,70 600,120 C800,170 1000,70 1200,120 C1400,170 1600,70 1800,120" class="water-path" style="opacity:0.04"></path>
-          </svg>
-        </div>
-        <div class="hero-bg aurora-container">
-          <div class="aurora-blob aurora-1"></div>
-          <div class="aurora-blob aurora-2"></div>
-          <canvas id="hero-canvas"></canvas>
-        </div>
-        <div class="hero-content">
-          <h1 data-animate style="display: inline-flex; align-items: center; justify-content: center; text-align: left; gap: 0.2em;">
-            ${t('hero_prefix') ? `<span style="font-size: 1.65em; line-height: 1; letter-spacing: -0.04em; font-weight: 700; background: linear-gradient(to bottom, #111 20%, var(--aqua, #2cb1e1) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;">${t('hero_prefix')}</span>` : ''}
-            <div style="display: flex; flex-direction: column; background: linear-gradient(to bottom right, #111 10%, var(--aqua, #2cb1e1) 90%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-              <span style="white-space: nowrap;">${t('hero_main_1')}</span>
-              <span style="white-space: nowrap;">${t('hero_main_2')}</span>
-            </div>
-          </h1>
-          <p class="hero-sub" data-animate style="transition-delay: 0.1s">${t('hero_sub')}</p>
-          <div class="hero-btns" data-animate style="transition-delay: 0.2s">
-            <a href="/products" class="cta-btn">${t('hero_cta1')}</a>
-            <a href="/about" class="cta-btn outline">${t('hero_cta2')}</a>
+      <!-- Normal hero content (stays in flow, sets height) -->
+      <div class="hero-intro-inner">
+      <div class="parallax-water-container">
+        <svg viewBox="0 0 1200 200" class="water-path-svg" style="width:200%; height:100%">
+            <path d="M0,100 C150,150 350,50 500,100 C650,150 850,50 1000,100 C1150,150 1350,50 1500,100" class="water-path"></path>
+            <path d="M0,120 C200,170 400,70 600,120 C800,170 1000,70 1200,120 C1400,170 1600,70 1800,120" class="water-path" style="opacity:0.04"></path>
+        </svg>
+      </div>
+      <div class="hero-bg aurora-container">
+        <div class="aurora-blob aurora-1"></div>
+        <div class="aurora-blob aurora-2"></div>
+        <canvas id="hero-canvas"></canvas>
+      </div>
+      <div class="hero-content">
+        <h1 data-animate style="display: inline-flex; align-items: center; justify-content: center; text-align: left; gap: 0.2em;">
+          ${t('hero_prefix') ? `<span style="font-size: 1.65em; line-height: 1; letter-spacing: -0.04em; font-weight: 700; background: linear-gradient(to bottom, #111 20%, var(--aqua, #2cb1e1) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block;">${t('hero_prefix')}</span>` : ''}
+          <div style="display: flex; flex-direction: column; background: linear-gradient(to bottom right, #111 10%, var(--aqua, #2cb1e1) 90%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            <span style="white-space: nowrap;">${t('hero_main_1')}</span>
+            <span style="white-space: nowrap;">${t('hero_main_2')}</span>
           </div>
-        </div>
-        <div class="hero-waves">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,60 C150,110 350,10 500,60 C650,110 850,10 1000,60 L1000,120 L0,120 Z" class="wave-path"></path>
-              <path d="M0,80 C200,130 400,30 600,80 C800,130 1000,30 1200,80 L1200,120 L0,120 Z" class="wave-path"></path>
-          </svg>
-        </div>
+        </h1>
+        <p class="hero-sub" data-animate style="transition-delay: 0.1s">${t('hero_sub')}</p>
+        <div class="hero-btns" data-animate style="transition-delay: 0.2s">
+          <a href="/products" class="cta-btn">${t('hero_cta1')}</a>
+          <a href="/about" class="cta-btn outline">${t('hero_cta2')}</a>
         </div>
       </div>
-      <!-- Slide 2: Banner -->
-      <div class="hero-slide hero-banner-slide">
+      <div class="hero-waves">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,60 C150,110 350,10 500,60 C650,110 850,10 1000,60 L1000,120 L0,120 Z" class="wave-path"></path>
+            <path d="M0,80 C200,130 400,30 600,80 C800,130 1000,30 1200,80 L1200,120 L0,120 Z" class="wave-path"></path>
+        </svg>
+      </div>
+      </div>
+      <!-- Banner overlay (position:absolute, fades over hero) -->
+      <div class="hero-banner-slide">
         <img src="/img/webanner.jpeg" alt="ContecPark Banner">
       </div>
       <!-- Dots -->
@@ -1296,21 +1294,20 @@ function route() {
 
 /* ===================== HERO SLIDER ===================== */
 function initHeroSlider() {
-  const slides = Array.from(document.querySelectorAll('.hero-slide'));
+  const banner = document.querySelector('.hero-banner-slide');
   const dots   = Array.from(document.querySelectorAll('.hero-dot'));
-  if (slides.length < 2) return;
+  if (!banner) return;
 
-  let current = 0;
+  let showBanner = false;
 
   window.goToSlide = function(n) {
-    slides[current].classList.remove('active');
-    dots[current]?.classList.remove('active');
-    current = n % slides.length;
-    slides[current].classList.add('active');
-    dots[current]?.classList.add('active');
+    showBanner = n === 1;
+    banner.classList.toggle('active', showBanner);
+    dots[0]?.classList.toggle('active', !showBanner);
+    dots[1]?.classList.toggle('active', showBanner);
   };
 
-  const timer = setInterval(() => window.goToSlide((current + 1) % slides.length), 5000);
+  const timer = setInterval(() => window.goToSlide(showBanner ? 0 : 1), 5000);
   window._heroSliderCleanup = () => clearInterval(timer);
 }
 
