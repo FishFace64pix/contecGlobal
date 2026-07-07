@@ -553,6 +553,15 @@ button {
     background: radial-gradient(circle at center, rgba(14,165,233,0.06) 0%, var(--bg-main) 70%);
 }
 
+/* Hero Slider */
+.hero-slider { overflow: hidden; }
+.hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s ease; pointer-events: none; z-index: 1; }
+.hero-slide.active { opacity: 1; pointer-events: auto; z-index: 2; }
+.hero-banner-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-dots { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 20; }
+.hero-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.35); border: 2px solid rgba(255,255,255,0.7); cursor: pointer; transition: background 0.3s, transform 0.3s; padding: 0; }
+.hero-dot.active { background: #fff; transform: scale(1.25); }
+
 .hero-waves {
     position: absolute;
     bottom: 0;
