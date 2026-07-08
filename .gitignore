@@ -10,7 +10,6 @@ yeni bilgiler/
 img/products/**/*.png
 img/*.png
 !img/logo.png
-!img/weLogo.png
 !apple-touch-icon.png
 
 # Temporary Scripts

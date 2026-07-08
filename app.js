@@ -1112,7 +1112,7 @@ function renderAbout() {
     <div class="container about-page section-padding" style="padding-top:160px">
       <div style="text-align: center; margin-bottom: 24px;" data-animate>
         <p style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; max-width: 100%; text-align: center;">Member of</p>
-        <img src="/img/weLogo.png" alt="Watercoolers Europe" style="width: 260px; height: auto; opacity: 0.9; display: inline-block;">
+        <img src="/img/weLogo.webp" alt="Watercoolers Europe" style="width: 260px; height: auto; opacity: 0.9; display: inline-block;">
       </div>
       <h1 data-animate>${t('about_title')}</h1>
       <p class="about-text" data-animate style="transition-delay:0.1s">${t('about_p1')}</p>
@@ -1162,7 +1162,7 @@ function renderAbout() {
             <p><a href="mailto:info@contecpark.com">info@contecpark.com</a></p>
             <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border-subtle);">
                 <p style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.08em;">Member of</p>
-                <img src="/img/weLogo.png" alt="Watercoolers Europe" style="height: 44px; width: auto; opacity: 0.85; filter: grayscale(0.1);">
+                <img src="/img/weLogo.webp" alt="Watercoolers Europe" style="height: 44px; width: auto; opacity: 0.85; filter: grayscale(0.1);">
             </div>
         </div>
         <div class="contact-form" id="contact-form" data-animate style="transition-delay: 0.1s">
