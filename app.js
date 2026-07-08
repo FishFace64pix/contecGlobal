@@ -1274,7 +1274,11 @@ function route() {
   }
   // Post-render hooks
   requestAnimationFrame(() => {
-    if (hash === '/') { initParticles(document.getElementById('hero-canvas')); }
+    if (hash === '/') {
+      initParticles(document.getElementById('hero-canvas'));
+      if (!_popupFirstLoad) resetEventPopup(false);
+      _popupFirstLoad = false;
+    }
     if (window.observeElements) window.observeElements();
     initFAQs();
     initFormValidation();
@@ -1492,44 +1496,52 @@ window.addEventListener('DOMContentLoaded', () => {
   initEventPopup();
 });
 
+let _popupObserver = null;
+let _popupTimeout = null;
+let _popupFirstLoad = true;
+
 function initEventPopup() {
+  // Called once on DOMContentLoaded — triggers first show
+  resetEventPopup(true);
+}
+
+function resetEventPopup(isFirstLoad) {
   const popup = document.getElementById('event-popup');
   if (!popup) return;
 
-  let shown = false;
+  // Clear any pending timer and old observer
+  if (_popupTimeout) { clearTimeout(_popupTimeout); _popupTimeout = null; }
+  if (_popupObserver) { _popupObserver.disconnect(); _popupObserver = null; }
 
-  function showPopup() {
-    if (popup.classList.contains('dismissed')) return;
-    shown = true;
-    popup.classList.add('visible');
-    popup.classList.remove('hero-hidden');
-  }
+  // Reset state for this visit
+  popup.classList.remove('dismissed', 'visible', 'hero-hidden');
 
-  function hidePopup() {
-    if (popup.classList.contains('dismissed')) return;
-    popup.classList.add('hero-hidden');
-    popup.classList.remove('visible');
-  }
+  const delay = isFirstLoad ? 3500 : 1500;
 
-  setTimeout(() => {
+  _popupTimeout = setTimeout(() => {
     const hero = document.querySelector('.hero-intro-section');
     if (!hero) return;
     const rect = hero.getBoundingClientRect();
-    if (rect.bottom > 0) showPopup();
-  }, 3500);
+    if (rect.bottom > 0) {
+      popup.classList.add('visible');
+      popup.classList.remove('hero-hidden');
+    }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if (shown) showPopup();
-      } else {
-        hidePopup();
-      }
-    });
-  }, { threshold: 0 });
+    _popupObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (popup.classList.contains('dismissed')) return;
+        if (entry.isIntersecting) {
+          popup.classList.add('visible');
+          popup.classList.remove('hero-hidden');
+        } else {
+          popup.classList.add('hero-hidden');
+          popup.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0 });
 
-  const hero = document.querySelector('.hero-intro-section');
-  if (hero) observer.observe(hero);
+    _popupObserver.observe(hero);
+  }, delay);
 }
 
 /* ===================== PREMIUM UPGRADES: CURSOR & MODAL ===================== */
