@@ -20,6 +20,7 @@
     --border:#E5E5EA;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{-webkit-user-select:none;user-select:none;}
   body{
     font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;
     background:var(--bg-main);
@@ -40,19 +41,20 @@
     color:var(--primary);margin-bottom:10px;padding-left:4px;
   }
   .doc-card{
-    display:flex;align-items:center;gap:14px;
+    display:flex;align-items:center;gap:14px;width:100%;
     background:var(--bg-card);border:1px solid var(--border);
     border-radius:14px;padding:16px 18px;margin-bottom:10px;
-    text-decoration:none;color:var(--text);
+    text-decoration:none;color:var(--text);font-family:inherit;cursor:pointer;
     transition:box-shadow .2s ease, border-color .2s ease;
+    -webkit-tap-highlight-color:transparent;
   }
   .doc-card:active{box-shadow:0 4px 16px var(--primary-glow);border-color:var(--primary);}
   .doc-icon{
     flex-shrink:0;width:38px;height:38px;border-radius:9px;
     background:var(--primary-glow);color:var(--primary);
-    display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:800;
   }
-  .doc-text{flex:1;}
+  .doc-text{flex:1;text-align:left;}
   .doc-title{font-size:0.95rem;font-weight:700;line-height:1.3;}
   .doc-desc{font-size:0.78rem;color:var(--text-muted);margin-top:2px;}
   .doc-arrow{color:var(--text-muted);font-size:1.1rem;flex-shrink:0;}
@@ -60,6 +62,32 @@
     margin-top:24px;text-align:center;font-size:0.75rem;color:var(--text-muted);
     line-height:1.6;
   }
+
+  /* --- Viewer overlay --- */
+  #viewer-overlay{
+    position:fixed;inset:0;background:#111214;z-index:1000;
+    display:none;flex-direction:column;
+  }
+  #viewer-overlay.open{display:flex;}
+  #viewer-header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 16px;background:#1c1d20;color:#fff;flex-shrink:0;
+  }
+  #viewer-title{font-size:0.88rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  #viewer-close{
+    background:rgba(255,255,255,0.1);border:none;color:#fff;
+    width:34px;height:34px;border-radius:50%;font-size:1.1rem;cursor:pointer;flex-shrink:0;
+  }
+  #viewer-body{
+    flex:1;overflow-y:auto;overflow-x:hidden;
+    display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 10px 40px;
+    -webkit-user-select:none;user-select:none;
+  }
+  #viewer-body canvas{
+    max-width:100%;height:auto;box-shadow:0 4px 18px rgba(0,0,0,0.35);
+    pointer-events:none; /* blocks the "save image as" hint on long-press/right-click on the canvas itself */
+  }
+  #viewer-status{color:#cfcfcf;font-size:0.85rem;padding:40px 0;text-align:center;}
 </style>
 </head>
 <body>
@@ -70,42 +98,42 @@
 
     <div class="lang-block">
       <div class="lang-label">Română</div>
-      <a class="doc-card" href="instructiuni-depozitare-manipulare-ro.pdf" target="_blank" rel="noopener">
+      <button class="doc-card" type="button" data-file="instructiuni-depozitare-manipulare-ro.pdf" data-title="Instrucțiuni depozitare și manipulare">
         <span class="doc-icon">PDF</span>
         <span class="doc-text">
           <span class="doc-title">Instrucțiuni depozitare și manipulare</span>
           <span class="doc-desc">Cum se folosește și se întreține bidonul</span>
         </span>
         <span class="doc-arrow">›</span>
-      </a>
-      <a class="doc-card" href="pris-tritan-ro.pdf" target="_blank" rel="noopener">
+      </button>
+      <button class="doc-card" type="button" data-file="pris-tritan-ro.pdf" data-title="Fișă tehnică produs (PRIS)">
         <span class="doc-icon">PDF</span>
         <span class="doc-text">
           <span class="doc-title">Fișă tehnică produs (PRIS)</span>
           <span class="doc-desc">Specificații și informații de siguranță</span>
         </span>
         <span class="doc-arrow">›</span>
-      </a>
+      </button>
     </div>
 
     <div class="lang-block">
       <div class="lang-label">English</div>
-      <a class="doc-card" href="instructions-storage-handling-en.pdf" target="_blank" rel="noopener">
+      <button class="doc-card" type="button" data-file="instructions-storage-handling-en.pdf" data-title="Storage & Handling Instructions">
         <span class="doc-icon">PDF</span>
         <span class="doc-text">
           <span class="doc-title">Storage & Handling Instructions</span>
           <span class="doc-desc">How to use and maintain the bottle</span>
         </span>
         <span class="doc-arrow">›</span>
-      </a>
-      <a class="doc-card" href="pris-tritan-en.pdf" target="_blank" rel="noopener">
+      </button>
+      <button class="doc-card" type="button" data-file="pris-tritan-en.pdf" data-title="Product Information Sheet (PRIS)">
         <span class="doc-icon">PDF</span>
         <span class="doc-text">
           <span class="doc-title">Product Information Sheet (PRIS)</span>
           <span class="doc-desc">Specifications and safety information</span>
         </span>
         <span class="doc-arrow">›</span>
-      </a>
+      </button>
     </div>
 
     <footer>
@@ -113,5 +141,88 @@
       Strada Gloriei 3, Giurgiu, România
     </footer>
   </div>
+
+  <div id="viewer-overlay">
+    <div id="viewer-header">
+      <span id="viewer-title"></span>
+      <button id="viewer-close" type="button" aria-label="Închide">✕</button>
+    </div>
+    <div id="viewer-body">
+      <div id="viewer-status">Se încarcă&hellip;</div>
+    </div>
+  </div>
+
+<script type="module">
+import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/6.2.108/pdf.min.mjs";
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/6.2.108/pdf.worker.min.mjs";
+
+const overlay = document.getElementById("viewer-overlay");
+const body = document.getElementById("viewer-body");
+const titleEl = document.getElementById("viewer-title");
+const closeBtn = document.getElementById("viewer-close");
+
+async function openViewer(file, title) {
+  titleEl.textContent = title;
+  body.innerHTML = '<div id="viewer-status">Se încarcă&hellip; / Loading&hellip;</div>';
+  overlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+
+  try {
+    const loadingTask = pdfjsLib.getDocument({ url: file });
+    const pdf = await loadingTask.promise;
+    body.innerHTML = "";
+
+    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+      const page = await pdf.getPage(pageNum);
+      const viewportBase = page.getViewport({ scale: 1 });
+      const targetWidth = Math.min(window.innerWidth - 20, 900);
+      const scale = (targetWidth / viewportBase.width) * (window.devicePixelRatio || 1);
+      const viewport = page.getViewport({ scale });
+
+      const canvas = document.createElement("canvas");
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      canvas.style.width = (viewport.width / (window.devicePixelRatio || 1)) + "px";
+      const ctx = canvas.getContext("2d");
+      body.appendChild(canvas);
+
+      await page.render({ canvasContext: ctx, viewport }).promise;
+    }
+  } catch (err) {
+    console.error("PDF viewer error:", err);
+    body.innerHTML = '<div id="viewer-status">Nu s-a putut încărca documentul. / Could not load the document.</div>';
+  }
+}
+
+function closeViewer() {
+  overlay.classList.remove("open");
+  document.body.style.overflow = "";
+  body.innerHTML = "";
+}
+
+document.querySelectorAll(".doc-card").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    openViewer(btn.dataset.file, btn.dataset.title);
+  });
+});
+
+closeBtn.addEventListener("click", closeViewer);
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) closeViewer();
+});
+
+// Light deterrents — not real protection, just friction against casual saving.
+document.addEventListener("contextmenu", (e) => e.preventDefault());
+document.addEventListener("dragstart", (e) => e.preventDefault());
+document.addEventListener("keydown", (e) => {
+  const k = e.key.toLowerCase();
+  if ((e.ctrlKey || e.metaKey) && (k === "s" || k === "p")) {
+    e.preventDefault();
+  }
+  if (k === "escape" && overlay.classList.contains("open")) {
+    closeViewer();
+  }
+});
+</script>
 </body>
 </html>
