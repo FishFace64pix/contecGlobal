@@ -1,5 +1,8 @@
 {
   "name": "contecpark-presentation-b2b",
+  "redirects": [
+    { "source": "/go/nou", "destination": "/", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
