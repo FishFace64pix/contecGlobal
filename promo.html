@@ -129,13 +129,37 @@
   }
   .submit-btn:active{opacity:0.85;}
 
-  .success-msg{
-    display:none;background:#E8F8EE;border:1px solid #B7E8C8;color:#1F7A3F;
-    border-radius:12px;padding:14px 16px;font-size:0.88rem;font-weight:700;margin-top:14px;text-align:center;
-  }
   .error-banner{
     display:none;background:#FDECEA;border:1px solid #F3B9B3;color:#B3261E;
     border-radius:12px;padding:14px 16px;font-size:0.85rem;font-weight:600;margin-top:14px;text-align:center;
+  }
+
+  /* --- Full-screen success confirmation --- */
+  #success-overlay{
+    position:fixed;inset:0;background:var(--bg-main);z-index:2000;
+    display:none;flex-direction:column;align-items:center;justify-content:center;
+    padding:24px;text-align:center;
+  }
+  #success-overlay.show{display:flex;}
+  .checkmark{width:88px;height:88px;margin-bottom:22px;}
+  .checkmark-circle{
+    stroke-dasharray:166;stroke-dashoffset:166;stroke-width:3;
+    stroke:var(--primary);fill:none;
+    animation:checkmark-stroke 0.6s cubic-bezier(0.65,0,0.45,1) forwards;
+  }
+  .checkmark-check{
+    stroke-dasharray:48;stroke-dashoffset:48;stroke-width:4;
+    stroke:var(--primary);fill:none;stroke-linecap:round;stroke-linejoin:round;
+    animation:checkmark-stroke 0.3s cubic-bezier(0.65,0,0.45,1) 0.6s forwards;
+  }
+  @keyframes checkmark-stroke{100%{stroke-dashoffset:0;}}
+  .success-overlay-text{
+    font-size:1.15rem;font-weight:800;max-width:320px;line-height:1.4;
+    opacity:0;animation:success-text-in 0.4s ease 0.85s forwards;
+  }
+  @keyframes success-text-in{
+    from{opacity:0;transform:translateY(6px);}
+    to{opacity:1;transform:translateY(0);}
   }
 
   footer{margin-top:28px;text-align:center;font-size:0.72rem;color:var(--text-muted);line-height:1.6;}
@@ -283,7 +307,6 @@
       </div>
 
       <button type="submit" class="submit-btn">Submit</button>
-      <div class="success-msg" id="success-msg">Thank you — your request has been received.</div>
       <div class="error-banner" id="error-msg">Something went wrong. Please try again, or contact us directly at info@contecpark.com.</div>
     </form>
 
@@ -334,6 +357,14 @@
     </div>
   </div>
 
+  <div id="success-overlay">
+    <svg class="checkmark" viewBox="0 0 52 52">
+      <circle class="checkmark-circle" cx="26" cy="26" r="24"/>
+      <path class="checkmark-check" d="M14.5 27.5l7.3 7.3 15.7-15.7"/>
+    </svg>
+    <p class="success-overlay-text">Thank you — your request has been received.</p>
+  </div>
+
 <script>
   const overlay = document.getElementById('terms-overlay');
   document.getElementById('open-terms').addEventListener('click', () => overlay.classList.add('open'));
@@ -367,7 +398,7 @@
 
   const promoForm = document.getElementById('promo-form');
   const submitBtn = promoForm.querySelector('.submit-btn');
-  const successMsg = document.getElementById('success-msg');
+  const successOverlay = document.getElementById('success-overlay');
   const errorMsg = document.getElementById('error-msg');
 
   promoForm.addEventListener('submit', async function (e) {
@@ -397,7 +428,6 @@
 
     if (!valid) return;
 
-    successMsg.style.display = 'none';
     errorMsg.style.display = 'none';
     const originalBtnText = submitBtn.innerHTML;
     submitBtn.innerHTML = 'Sending…';
@@ -417,11 +447,11 @@
       });
 
       if (response.ok) {
-        successMsg.style.display = 'block';
         this.reset();
         document.getElementById('country-code').value = '+40';
         submitBtn.disabled = true;
-        setTimeout(() => { window.location.href = '/'; }, 2500);
+        successOverlay.classList.add('show');
+        setTimeout(() => { window.location.href = '/'; }, 2800);
       } else {
         errorMsg.style.display = 'block';
         submitBtn.disabled = false;
