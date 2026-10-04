@@ -421,6 +421,7 @@
         this.reset();
         document.getElementById('country-code').value = '+40';
         submitBtn.disabled = true;
+        setTimeout(() => { window.location.href = '/'; }, 2500);
       } else {
         errorMsg.style.display = 'block';
         submitBtn.disabled = false;
