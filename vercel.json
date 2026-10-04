@@ -4,6 +4,7 @@
     { "source": "/go/nou", "destination": "/", "permanent": false }
   ],
   "rewrites": [
+    { "source": "/promo", "destination": "/promo.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
@@ -31,6 +32,12 @@
     },
     {
       "source": "/qr/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
+    {
+      "source": "/promo",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
